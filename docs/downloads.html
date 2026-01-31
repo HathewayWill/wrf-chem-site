@@ -19,6 +19,28 @@
     </li>
   </ul>
 
+  
+  <h2>WRF-Chem Tutorial Data (2015)</h2>
+  <p>These archives are split into parts. Download all parts, then reconstruct with <code>cat</code>.</p>
+
+  <h3>ALL_FILE.tar.gz</h3>
+  <ul>
+    <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/ALL_FILE.tar.gz.part-aa">ALL_FILE.tar.gz.part-aa</a></li>
+    <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/ALL_FILE.tar.gz.part-ab">ALL_FILE.tar.gz.part-ab</a></li>
+    <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/ALL_FILE.tar.gz.parts.sha256">ALL_FILE.tar.gz.parts.sha256</a></li>
+  </ul>
+  <pre><code>cat ALL_FILE.tar.gz.part-* &gt; ALL_FILE.tar.gz
+sha256sum -c ALL_FILE.tar.gz.parts.sha256</code></pre>
+
+  <h3>global_emissions_v3_24aug2015.tar.gz</h3>
+  <ul>
+    <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/global_emissions_v3_24aug2015.tar.gz.part-aa">global_emissions_v3_24aug2015.tar.gz.part-aa</a></li>
+    <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/global_emissions_v3_24aug2015.tar.gz.part-ab">global_emissions_v3_24aug2015.tar.gz.part-ab</a></li>
+    <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/global_emissions_v3_24aug2015.tar.gz.parts.sha256">global_emissions_v3_24aug2015.tar.gz.parts.sha256</a></li>
+  </ul>
+  <pre><code>cat global_emissions_v3_24aug2015.tar.gz.part-* &gt; global_emissions_v3_24aug2015.tar.gz
+sha256sum -c global_emissions_v3_24aug2015.tar.gz.parts.sha256</code></pre>
+
   <p><a href="./index.html">Back to home</a></p>
 </body>
 </html>
