@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="CONTENT-TYPE"/>
+<title></title>
+<meta content="OpenOffice.org 3.1  (Unix)" name="GENERATOR"/>
+<meta content="Steven Peckham" name="AUTHOR"/>
+<meta content="20090707;7380800" name="CREATED"/>
+<meta content="Steven Peckham" name="CHANGEDBY"/>
+<meta content="20090707;7384900" name="CHANGED"/>
+<style type="text/css">
+	<!--
+		@page { margin: 0.79in }
+		P { margin-bottom: 0.08in }
+	-->
+	</style>
+</head>
+<body dir="LTR" lang="en-US">
+<p align="CENTER"><b>COMPILING WRF-Chem</b></p>
+<p>
+</p>
+<p> Compiling WRF-Chem: Building the WRF-chem code to allow a user to include dust, chemical species and  
+  aerosols when running a WRF simulation.
+</p><p>
+</p>
+<p>***************************************************************************</p>
+<p>
+</p>
+<p>Purpose: To familiarize the user with the methodology by which the WRF-Chem 
+  code is compiled. The methodology is similar to which the WRF model and the 
+  WRF Preprocessing System (WPS) are compiled. 
+</p>
+<p>
+</p>
+<p>***************************************************************************</p>
+<p>
+</p>
+<ol>
+<p>
+</p><li> Note: If not already familiar with the compiling of the WRF and WRF preprocessor 
+    codes, the user might consider not doing this exercise until after attending a WRF 
+    tutorial, or take the online training for the WRF model so that the compilation
+    process is familiar.
+
+<p>
+<br/>
+</p></li><li> Before attempting to compile the WRF-Chem
+ model, be sure you always set your environmental variables.  This 
+ setp is also explained in the WRF-Chem User's Guide under Appendix A
+ titled "Quick Start Guide".
+<p>
+</p>
+With the c-shell environment the user needs to set the WRF_CHEM environment variable
+setenv WRF_CHEM 1
+<br/>
+<p>
+
+If the optional kinetic pre-processor is to be compiled, then several other environmental variables need to be set.  
+These include the WRF_KPP environmental variable:
+</p>
+setenv WRF_KPP 1 (optional)
+
+the path to the flex library (libfl.a)
+
+setenv FLEX_LIB_DIR /usr/lib (optional) 
+
+<p>
+</p>
+<p>
+And the path to the YACC c code compiler with the -d compile flag included
+</p>
+<p>
+</p>
+<p>
+setenv YACC ‘/usr/bin/yacc –d’ (optional)
+</p>
+<br/>
+<br/>
+<p>
+If the k-shell is being used, then use the export command instead of setenv
+</p>
+<blockquote>
+export WRF_CHEM=1<br/>
+export WRF_KPP=1 (optional)<br/>
+export FLEX_LIB_DIR=/usr/lib (optional) <br/>
+export YACC=‘/usr/bin/yacc –d’ (optional)<br/>
+</blockquote>
+<br/>
+<p>
+</p></li><li> Next configure the WRF code using the configure command in the WRFV3 directory. Select the option
+  best suited for your compiler and computer. This may appear a little confusing at first as there are
+  several options for each compiler and some specifying a particular computer platform.  The WRF-Chem code
+  has been compiled using the ifort, PGI-FORTRAN and gfortran compilers. Thus, the compiler selected should not
+  matter.  The limiting factor for using WRF-Chem is that the shared memory options (smpar and smpar+dmpar) options
+  will not work with the chemistry code.  The user needs to select either the serial or dmpar compile option.
+<p>
+</p>
+<p>
+For example, if a user wants to use the ifort compiler, the user will select option 19 from the following configure choices:
+</p>
+<p>
+Please select from among the following supported platforms.
+</p>
+<p>
+</p>
+<blockquote>
+   1. (serial)   2. (smpar)   3. (dmpar)   4. (dm+sm)   PGI (pgf90/gcc) <br/>
+   5. (serial)   6. (smpar)   7. (dmpar)   8. (dm+sm)   PGI (pgf90/pgcc): SGI MPT <br/>
+   9. (serial)  10. (smpar)  11. (dmpar)  12. (dm+sm)   PGI (pgf90/gcc): PGI accelerator <br/>
+  13. (serial)  14. (smpar)  15. (dmpar)  16. (dm+sm)   INTEL (ifort/icc) <br/>
+                                          17. (dm+sm)   INTEL (ifort/icc): Xeon Phi (MIC architecture) <br/>
+  18. (serial)  19. (smpar)  20. (dmpar)  21. (dm+sm)   INTEL (ifort/icc): Xeon (SNB with AVX mods) <br/>
+  22. (serial)  23. (smpar)  24. (dmpar)  25. (dm+sm)   INTEL (ifort/icc): SGI MPT <br/>
+  26. (serial)  27. (smpar)  28. (dmpar)  29. (dm+sm)   INTEL (ifort/icc): IBM POE <br/>
+  30. (serial)               31. (dmpar)                PATHSCALE (pathf90/pathcc) <br/>
+  32. (serial)  33. (smpar)  34. (dmpar)  35. (dm+sm)   GNU (gfortran/gcc) <br/>
+  36. (serial)  37. (smpar)  38. (dmpar)  39. (dm+sm)   IBM (xlf90_r/cc_r) <br/>
+  40. (serial)  41. (smpar)  42. (dmpar)  43. (dm+sm)   PGI (ftn/gcc): Cray XT CLE <br/>
+  44. (serial)  45. (smpar)  46. (dmpar)  47. (dm+sm)   CRAY CCE (ftn/gcc): Cray XE and XC30 <br/>
+  48. (serial)  49. (smpar)  50. (dmpar)  51. (dm+sm)   INTEL (ftn/icc): Cray XC30 <br/>
+  52. (serial)  53. (smpar)  54. (dmpar)  55. (dm+sm)   PGI (pgf90/pgcc) <br/>
+  56. (serial)  57. (smpar)  58. (dmpar)  59. (dm+sm)   PGI (pgf90/gcc): -f90=pgf90 <br/>
+  60. (serial)  61. (smpar)  62. (dmpar)  63. (dm+sm)   PGI (pgf90/pgcc): -f90=pgf90 <br/>
+</blockquote>
+<p>
+For older code versions, the YELLOWSTONE and SGI MPT options are for a computer called YELLOWSTONE and for a computer that has the 
+SGI version of the message passing installed.  While your system administrator will know for certain if
+the SGI MPT is installed for your computer, it is best to assume that it is not installed and to compile
+without that option at first.
+</p>
+<p>
+</p></li><li> After running configure one should confirm that the chemistry options are included in the configure.wrf file.
+  The configure.wrf file can be view with an editor, or the more command and the user should look for the line
+  that contains the environmental compile definitions(ENVCOMPDEFS). This line and the following will contain the
+  information regarding the WRF compile settings. For example, if compiling without KPP the configure.wrf file
+  will contain the lines as follows:
+<blockquote>
+ENVCOMPDEFS     =     -DWRF_CHEM <br/>
+WRF_CHEM        =       1<br/>
+</blockquote>
+<p>
+And if compiling with KPP, the configure.wrf file will contain the additional information about the KPP settings:</p>
+<blockquote>
+ENVCOMPDEFS     =     -DWRF_CHEM -DBUILD_CHEM=1 -DWRF_KPP<br/>
+WRF_CHEM        =       1<br/>
+</blockquote>
+<p>
+</p></li><li> Next compile the WRF code using the standard WRF compile command 
+<blockquote>
+compile em_real &gt;&amp; compile.log<br/>
+</blockquote>
+<p>
+</p></li><li>Examine the compile log file to confirm that there are no compilation errors. Did you see some error messages? If so, there are several errors that typically happen: 
+<blockquote>
+If you see a message like: "WARNING: There is no 4D array named emis_ant" , then the emissions arrays are not included in some of the WRF modules.  This is a result of compiling
+the chemistry code without removing the non-chemistry compiled modules. Issue  a 'clean -a' command to fully clean the WRF code.  Then repeat the configure and compile commands.<br/>
+</blockquote>
+<br/>
+<blockquote>
+If you see a message like: "/usr/lib/libnetcdf.a(nc4attr.o): In function `nc_del_att':" , then the netCDF library settings are not correct.  This is a result of a bad environment 
+setting or a bad netCDF library. Use the same libraries that were used to compile WRF.  If you have not confirmed that WRF (without chemistry) can compile with your settings, do so now.
+The WRF-Chem model should compile if the WRF model compiles without chemistry as the IO routines do not change.<br/>
+</blockquote>
+<br/>
+<blockquote>
+If you see a message like: "dec_jpeg2000.c(4): catastrophic error: cannot open source file "jasper/jasper.h", then the GRIB environmental settings are turned on.  This error is 
+a result of the WPS environment settings being turned on when trying to compile WRF.  If you have not confirmed that the JASPER settings for the WPS are removed or turned off, do so now.
+The WRF-Chem model should compile once the JASPER and other WPS-related  environment settings are turned off.<br/>
+</blockquote>
+<br/>
+<p>
+</p></li><li> Finally compile the WRF-Chem external emissions conversion code using the compile command 
+<blockquote>
+compile emi_conv &gt;&amp; emcompile.log<br/>
+</blockquote>
+<p>
+</p></li><li>Examine the emissions conversion compile log file to confirm that there are no compilation errors. 
+
+
+<p>
+</p></li><li>If there have been no compile errors and the executable code has been built, you are now able to move forward to running the tutorial exercises. 
+
+
+
+
+
+<br/><p>This concludes WRF/chem tutorial instructions regarding compiling WRF-Chem</p>
+<p>
+</p>
+<br/>
+<br/>
+<hr/>
+<p style="margin:0in;margin-bottom:.0001pt"><span style="font-family:Arial"><a href="../tutorialexercises.htm">Return to WRF-Chem Tutorial Page</a> </span></p>
+</li></ol></body>
+</html>

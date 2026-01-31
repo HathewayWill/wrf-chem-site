@@ -1,0 +1,7 @@
+downloads/
+large-downloads/
+*.tar
+*.tar.gz
+*.tgz
+*.tar.bz2
+*.tar.xz

@@ -1,0 +1,436 @@
+
+(function(jq) {
+
+jq.widget('ui.flipbook', {
+
+    _init: function( ) {
+        var self = this,
+            o = this.options,
+            context = this.element[0];
+
+        this.element
+        .addClass('ui-fb ui-widget ui-widget-content ui-corner-all ui-helper-clearfix')
+        .attr('role','flipbook')
+        .append(
+            '<div class="ui-widget-content">' +
+            '    <div class="ui-fb-speed"></div>' +
+            '</div>' +
+            '<div class="ui-fb-images ui-widget-content ui-corner-right">' +
+            '  <div class="ui-fb-loader" style="display:none;"><div class="ui-widget-overlay ui-corner-all"></div>Loading ... <span></span></div>' +
+            '</div>'
+        );
+
+        var $buttons = jq('.ui-fb-buttons', context),
+            width = 3 * $buttons.find('a:first').outerWidth(true) - 6;
+        $buttons.width(width);
+        jq('.ui-fb-loop', context).width(width);
+
+        this.images = jq('.ui-fb-images', context);
+        this.indicators = jq('ul.ui-fb-indicators', context)
+        .bind('click', function(e) {
+            if (e.target.nodeName !== 'LI') return;
+            var $target = jq(e.target);
+            if ($target.hasClass('ui-fb-not-loaded')) return;
+            $target.toggleClass('ui-state-disabled');
+        })
+        .bind('mouseover', function(e) {
+            if (e.target.nodeName !== 'LI') return;
+            var $target = jq(e.target);
+            if ($target.hasClass('ui-fb-not-loaded')) return;
+            $target.addClass('ui-state-hover');
+        })
+        .bind('mouseout', function(e) {
+            if (e.target.nodeName !== 'LI') return;
+            var $target = jq(e.target);
+            if ($target.hasClass('ui-fb-not-loaded')) return;
+            $target.removeClass('ui-state-hover');
+        });
+
+        // slider for animation speed
+        jq('.ui-fb-speed', context).slider({
+            min: 2,
+            max: 40,
+            value: 32,
+            range: 'min',
+            change: function(event, ui) { self._delay(ui.value) }
+        });
+        jq('.ui-slider-range-min', context).addClass('ui-corner-left');
+        var $handle = jq('.ui-fb-speed .ui-slider-handle', context);
+
+        // all hover and mousedown/up logic for buttons
+        jq('.ui-fb-button:not(.ui-state-disabled)', context)
+        .hover(
+            function(){
+                jq(this).addClass('ui-state-hover');
+            },
+            function(){
+                jq(this).removeClass('ui-state-hover');
+            }
+        )
+        .mousedown(function(){
+                jq(this).parents('.ui-fb-buttonset-single:first').find('.ui-fb-button.ui-state-active').removeClass('ui-state-active');
+                if( jq(this).is('.ui-state-active.ui-fb-button-toggleable, .ui-fb-buttonset-multi .ui-state-active') ){ jq(this).removeClass('ui-state-active'); }
+                else { jq(this).addClass('ui-state-active'); }
+        })
+        .mouseup(function(){
+            if(! jq(this).is('.ui-fb-button-toggleable, .ui-fb-buttonset-single .ui-fb-button,  .ui-fb-buttonset-multi .ui-fb-button') ){
+                jq(this).removeClass('ui-state-active');
+            }
+        });
+
+        this.playPause = jq('a[title=Play]', context).click(function() { self._startStop() });
+        jq('a[title=Prev]', context).click(function() { self._activate(self.stop().prev()) });
+        jq('a[title=Next]', context).click(function() { self._activate(self.stop().next()) });
+
+        jq('button[name=Forward]', context).click(function() { self._direction('forward') });
+        jq('button[name=Reverse]', context).click(function() { self._direction('reverse') });
+        jq('button[name=Bounce]', context).click(function() { self._direction('bounce') });
+
+        this._delay(jq('.ui-fb-speed', context).slider('value'));
+        this._imageList = [];
+        this.direction = 'forward';
+        this._retry = {
+            list: [],
+            count: 0,
+            id: 0
+        };
+
+        this._setData('images', o.images);
+
+        // bind keyboard events to our flipbook controls
+        if (o.keyboard) {
+            this._keydown = function( event ) {
+                if (event.altKey || event.ctrlKey || event.metaKey) { return; }
+                var code = event.keyCode ? event.keyCode : event.which;
+
+                switch (code) {
+                case jq.ui.keyCode.SPACE:      // spacebar
+                    self._startStop();
+                    return false;    // prevent default browser behavior
+
+                case jq.ui.keyCode.LEFT:       // left arrow
+                    self._activate(self.stop().prev());
+                    return false;
+
+                case jq.ui.keyCode.RIGHT:      // right arrow
+                    self._activate(self.stop().next());
+                    return false;
+
+                case jq.ui.keyCode.UP:         // up arrow
+                case jq.ui.keyCode.DOWN:       // down arrow
+                    if (event.target === $handle[0]) { break; }
+
+                    event.target = $handle[0];
+                    $handle.trigger(event);
+                    return false;
+
+                case 66:   // 'b'
+                    jq('button[name=Bounce]', context).mousedown();
+                    self._direction('bounce');
+                    return false;
+
+                case 70:  // 'f'
+                    jq('button[name=Forward]', context).mousedown();
+                    self._direction('forward');
+                    return false;
+
+                case 82:  // 'r'
+                    jq('button[name=Reverse]', context).mousedown();
+                    self._direction('reverse');
+                    return false;
+                }
+            };
+
+            this._keyup = function( event ) {
+                var code = event.keyCode ? event.keyCode : event.which;
+
+                switch (code) {
+                case jq.ui.keyCode.UP:         // up arrow
+                case jq.ui.keyCode.DOWN:       // down arrow
+                    if (event.target === $handle[0]) { break; }
+
+                    event.target = $handle[0];
+                    $handle.trigger(event);
+                    return false;
+                }
+            };
+
+            jq(document).keydown(this._keydown).keyup(this._keyup);
+        }
+    },
+
+    destroy: function() {
+        if (this.options.keyboard) {
+            jq(document).unbind('keydown', this._keydown).unbind('keyup', this._keyup);
+        }
+
+        this.element
+        .removeClass('ui-fb ui-fb-hide-controls ui-widget ui-widget-content ui-corner-all ui-helper-clearfix')
+        .removeAttr('role','flipbook')
+        .removeData('flipbook')
+        .empty();
+    },
+
+    _setData: function( key, value ) {
+        jq.widget.prototype._setData.apply(this, arguments);
+
+        switch (key) {
+            case 'images':
+                if (value && value.length > 0) this.stop()._load();
+                break;
+        }
+    },
+
+    _load: function() {
+        var self = this,
+            obj = null;
+
+        clearInterval(this._retry.id);
+        this._retry.list.length = 0;
+        this._retry.count = 0;
+
+        $('.ui-fb-loader', this.element[0]).show();
+        this.images.find('img').remove();
+        this._imageList.length = 0;
+        this.indicators.empty();
+        this._imageLoadCount = 0;
+
+        jq.each(this.options.images, function(ii, val) {
+            obj = {
+                image:     jq('<img>'),    // just a placeholder for now
+                indicator: jq('<li></li>').addClass('ui-corner-all ui-state-default ui-state-disabled ui-fb-not-loaded').text(ii+1)
+            };
+            self._imageList.push(obj);
+            self.images.append(obj.image);
+            self.indicators.append(obj.indicator);
+            self._addImage(ii, val);
+        });
+
+        this.indicators.width( 4 * this.indicators.find('li:first').outerWidth(true) );
+        this._retry.id = setInterval(function() {self._retryLoad()}, 1000);
+        return this;
+    },
+
+    _addImage: function( index, src ) {
+        if (this._retry.count) { src += '?_=' + (new Date).getTime() }
+
+        var self = this,
+            obj = this._imageList[index],
+            oldImg = obj.image,
+            newImg = jq('<img>')
+                  .attr('src', src)
+                  .load(function() {self._imageLoaded(index)})
+                  .error(function() {self._retry.list.push(index)});
+
+        obj.image = newImg;
+        oldImg.removeAttr('src').replaceWith(newImg);
+        return this;
+    },
+
+    _imageLoaded: function( index ) {
+        this._imageLoadCount++;
+        this._imageList[index].indicator.toggleClass('ui-state-disabled').removeClass('ui-fb-not-loaded');
+
+        var i;
+        var height=0;
+        var width=0;
+
+        if (this._imageLoadCount === 1) {
+           // get width of largest image - just compare 1st 2 images - first one may be bad
+           var count=2;
+           if (count > this._imageList.length) {
+             count=this._imageList.length;
+           }
+           for (i=0;i<count;i++) {
+              var image = this._imageList[i].image;
+              if  (image.width() > width) {
+                 width=image.width();
+              };
+              if  (image.height() > height) {
+                 height=image.height();
+              };
+            }
+            var image = this._imageList[index].image;
+            this.images.css({width: width, height: height});
+            //this.element.css('min-width', this.images.outerWidth(true) + jq('.ui-fb-controls', this.element[0]).outerWidth(true));
+            this._activate(index);
+            jq('.ui-fb-loader', this.element[0]).hide();
+            this.start();
+        }
+
+        return this;
+    },
+
+    _retryLoad: function() {
+        if ((this._imageLoadCount === this._imageList.length) || (this._retry.count >= this.options.wait)) {
+            clearInterval(this._retry.id);
+            this._retry.id = 0;
+            (this._imageLoadCount === this._imageList.length) ?
+                this._trigger('load') : this._trigger('error');
+            return this;
+        }
+
+        var self = this,
+            images = this.options.images,
+            img = null;
+
+        this._retry.count++;
+        jq.each(this._retry.list, function(ii, index) {self._addImage(index, images[index])});
+        this._retry.list.length = 0;
+    },
+
+    _activate: function( index ) {
+        this.images.find('img').hide();
+        this.indicators.find('li').removeClass('ui-state-active');
+
+        var obj = this._imageList[index];
+        obj.image.show();
+        obj.indicator.addClass('ui-state-active');
+        this._active = index;
+
+        return this;
+    },
+
+    _delay: function( frameRate ) {
+        this.delay = 25 * (42 - frameRate);
+
+        if (this._running) {
+            this._stop();
+            this._start();
+        }
+    },
+
+    next: function() {
+        var index = this._active,
+            found = null,
+            list = this._imageList,
+            length = list.length;
+
+        do {
+            index++;
+            if (index >= length) index = 0;
+            if (index === this._active) return index;
+            if (! list[index].indicator.hasClass('ui-state-disabled')) found = index;
+        } while (found === null);
+
+        return found;
+    },
+
+    prev: function() {
+        var index = this._active,
+            found = null,
+            list = this._imageList,
+            length = list.length;
+
+        do {
+            index--;
+            if (index < 0) index = length-1;
+            if (index === this._active) return index;
+            if (! list[index].indicator.hasClass('ui-state-disabled')) found = index;
+        } while (found === null);
+
+        return found;
+    },
+
+    start: function() {
+        if (this._start()) {
+            this.playPause
+            .attr('title', 'Pause')
+            .find('span')
+                .removeClass('ui-icon-play').addClass('ui-icon-pause');
+        }
+        return this;
+    },
+
+    stop: function() {
+        if (this._stop()) {
+            this.playPause
+            .attr('title', 'Play')
+            .find('span')
+                .removeClass('ui-icon-pause').addClass('ui-icon-play');
+        }
+        return this;
+    },
+
+    _forward: function() { this._activate(this.next()) },
+    _reverse: function() { this._activate(this.next()) },
+
+    _startStop: function() {
+        this._running ? this.stop() : this.start();
+        return this;
+    },
+
+    _start: function() {
+        if (!this._running) {
+            var self = this,
+                func = null;
+
+            switch (this.direction) {
+                case 'forward':
+                    func = function() { self._activate(self.next()) };
+                    this._bounceDir = 'next';
+                    break;
+                case 'reverse':
+                    func = function() { self._activate(self.prev()) };
+                    this._bounceDir = 'prev';
+                    break;
+                case 'bounce':
+                    if (!this._bounceDir) this._bounceDir = 'next';
+                    func = function() {
+                        var index;
+                        if (self._bounceDir === 'next') {
+                            index = self.next();
+                            if (index < self._active) {
+                                index = self.prev();
+                                self._bounceDir = 'prev';
+                            }
+                        } else {
+                            index = self.prev();
+                            if (index > self._active) {
+                                index = self.next();
+                                self._bounceDir = 'next';
+                            }
+                        }
+                        self._activate(index);
+                    };
+                    break;
+            }
+
+            this._running = setInterval(func, this.delay);
+            return true;
+        }
+        return false;
+    },
+
+    _stop: function() {
+        if (this._running) {
+            clearInterval(this._running);
+            this._running = 0;
+            return true;
+        }
+        return false;
+    },
+
+    _direction: function( dir ) {
+        this.direction = dir;
+        if (this._running) {
+            this._stop();
+            this._start();
+        }
+        return this;
+    }
+
+});
+
+jq.extend(jq.ui.flipbook, {
+    version: '1.2.0',
+    defaults: {
+        images: [],
+        wait: 60,
+        keyboard: true
+    }
+});
+
+})(jQuery);
+
+// JavaScript Document

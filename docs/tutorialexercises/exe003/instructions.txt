@@ -1,0 +1,24 @@
+
+Change the domain parameters:
+RAMETER(IX2=80,JX2=39,KX=19,KP=KX+1)
+! The parameters for the CONUS60km domain: PARAMETER(IX2=80,JX2=50,KX=20,KP=KX+1)
+change INTEGER    :: iproj = 2 to iproj=1
+     REAL       :: rekm = 6370.
+     REAL       :: dx = 60.E3
+     REAL       :: dxbigdo = 60.E3
+     REAL       :: xlatc =  40.00
+     REAL       :: xlonc = -97.00
+     REAL       :: clat1 = 45.00
+     REAL       :: clat2 = 33.00
+     INTEGER    :: inest1 = 0
+     REAL       :: xnesstr = 1.00
+     REAL       :: ynesstr = 1.00
+     INTEGER    :: il = 81
+     INTEGER    :: jl = 51
+     INTEGER    :: starthr = 01
+     INTEGER    :: maxhr = 24
+     INTEGER    :: endhr
+
+ifort -FR -convert big_endian emiss_v04_CONUS60km.F
+
+

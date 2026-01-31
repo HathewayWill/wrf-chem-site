@@ -1,0 +1,269 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<body><p align="CENTER"><b>EXERCISE 4</b></p>
+<p>
+</p>
+<p> Exercise: Using the Global emissions data (anthropogenic, sea salt, biomass burning) emissions for your domain (RACM-KPP-GOCART option).
+
+
+</p><p>***************************************************************************
+
+</p><p>Purpose: To familiarize the user with the available global emissions data set. This data set uses a program called "prep_chem_sources" to read the emissions data and map it to the user specified simulation domain. The program is capable of mapping anthropogenic and biogenic emissions, sea salt as well as biomass burning (wildfire) and volcanic ash emissions to the user domain.
+
+</p><p>The use of the prep_chem_sources program is complex and requires the user to be familiar with the simulation domain mapping information, the location of various data sets and where they are obtained as well as located on their particular system. Also, the user needs to be very familiar with the WRF-Chem registry (WRFV3/Registry/registry.chem) as the conversion process for this data that relies on the correct specification of chemistry namelist options. See the WRF-Chem Quick_start guide, the User's guide as well as the WRF-Chem FAQ web page (https://ruc.noaa.gov/wrf/wrf-chem/FAQ.htm) for additional information.
+
+</p><p>This exercise demonstrates the methodology for making a WRF-Chem emissions input files. the process shown here is:
+
+    </p><p>Generate emissions data file for the domain and chemical mechanism of interest and write them into an intermediate file.
+    </p><p>Convert the emission into a WRF chemical emissions input file. 
+
+</p><p>***************************************************************************
+
+    </p><p>Be sure your environmental variables are set. 
+
+    </p><p>The Global Emissions data and the prep_chem_sources program are available from the WRF-Chem ftp site at:  <a href="ftp://aftp.fsl.noaa.gov/divisions/taq/global_emissions">Global Emissions data </a>. (You need to download the global_emissions_v3_24aug2015.tar.gz file and prep_chem_sources_v1.5_24aug2015.tar.gz)
+
+    </p><p>cd PREP-CHEM-SRC-1.5/bin
+
+    </p><p>edit the prep_sources_chem.inp input file settings:
+
+    </p><p>grid_type= 'lambert', !
+
+    </p><p>ihour=00,
+
+    </p><p>iday=14,
+
+    </p><p>imon=07,
+
+    </p><p>iyear=2010,
+
+    </p><p>use_retro=1,
+
+    </p><p>use_edgar=3,
+
+    </p><p>use_gocart=1,
+
+    </p><p>use_bioge=1,
+
+    </p><p>use_bbem=1,
+
+    </p><p>use_bbem_plumerise=1,
+
+    </p><p>use_gocart_bg=1,
+
+    </p><p>use_volcanoes=0,
+
+    </p><p>...
+
+    </p><p>and the grid information
+
+    </p><p>...
+
+    </p><p>NGRIDS = 1, ! Number of grids to run
+    </p><p>NNXP = 41 , ! Number of x gridpoints
+
+    </p><p>NNYP = 41 ! Number of y gridpoints
+
+    </p><p>NXTNEST = 0, ! Grid number which is the next coarser grid
+
+    </p><p>DELTAX = 100000.,
+
+    </p><p>DELTAY = 100000., ! X and Y grid spacing
+
+    </p><p>! Nest ratios between this grid and the next coarser grid.
+
+    </p><p>NSTRATX = 1, ! x-direction
+
+    </p><p>NSTRATY = 1, ! y-direction
+
+    </p><p>! For polar, polelat and polelon are the geographical coordinates of the point
+
+    </p><p>! of tangency between the projection plane and the Earth surface.
+
+    </p><p>! It will be coincide with the center of grid (nnxp/2,nnyp/2) if they are
+
+    </p><p>! equal to centlat and centlon.
+
+    </p><p>! For lambert, then polelat and polelon specify the grid center lat/lon
+
+    </p><p>POLELAT = 35., !
+
+    </p><p>POLELON = 25., !
+
+    </p><p>STDLAT1 = 30., !
+
+    </p><p>STDLAT2 = 40., !
+
+    </p><p>CENTLAT = 35.,
+
+    </p><p>CENTLON = 25.,
+</p><p>***************************************************************************
+ 
+    </p><p> cd {your_prep_chem_dir}
+    </p><p> cp <a href="exe004/prep_chem_sources.inp">prep_chem_sources.inp</a> .
+ 
+    </p><p>Now you can run prep_chem_sources_RADM_WRF_FIM.exe. 
+
+    </p><p>./prep_chem_sources_RADM_WRF_FIM_.exe &lt; prep_chem_sources.inp
+</p><p>***************************************************************************
+
+</p><p>You should see the following message at the end of a successful run.
+
+</p><p>=&gt; Gocart Background  Section ---------------------------
+ </p><p>writing spc = DMS          41          41          12
+ </p><p>DMS for month =            7
+ </p><p>gocart_bg_spc_name DMS
+ </p><p>writing spc = EROD          41          41           3
+ </p><p>writing spc = H2O2          41          41          55
+ </p><p>writing spc = OH          41          41          55
+ </p><p>writing spc = NO3          41          41          55
+
+    </p><p>Verify that the emissions data exists in the prep_chem_sources directory and that their size is (approximately) correct. Depending upon your system and data used the file sizes could vary by a small fraction.
+
+</p><p>-rw-r--r-- 1 class140 cbet  181816 Jan 24 15:13 WRF-TUTORIAL-T-2010-07-14-000000-g1-ab.bin       ! Emissions file
+</p><p>-rw-r--r-- 1 class140 cbet  235672 Jan 24 15:13 WRF-TUTORIAL-T-2010-07-14-000000-g1-bb.bin       ! BB emissions
+</p><p>-rw-r--r-- 1 class140 cbet 1136624 Jan 24 15:13 WRF-TUTORIAL-T-2010-07-14-000000-g1-gocartBG.bin ! GOCART background
+
+    </p><p>Link these files to the directory where convert_emiss.exe located (usually /WRF/test/em_real). It might be useful to look at the quick start guide (in User's Guide) to get the linked file names as well as to follow the shown methodology.
+
+    </p><p>    ln -s {your_prep_chem_dir}/WRF-Chem_tutorial-T-2010-07-14-000000-g1-ab.bin emissopt3_d01
+    </p><p>    ln -s {your_prep_chem_dir}/WRF-Chem_tutorial-T-2010-07-14-000000-g1-bb.bin emissfire_d01
+    </p><p>    ln -s {your_prep_chem_dir}/WRF-Chem_tutorial-T-2010-07-14-000000-g1-gocartBG.bin wrf_gocart_backg
+    </p><p>    cp <a href="exe004/namelist.input">namelist.input </a>  .
+
+    </p><p> Next, set the correct options for emiss_opt (=5, RACM-KPP GOCART), io_style_emissions (2, date/time specific emissions data files used), emiss_inpt_opt=1, io_form_auxinput, etc. in the namelist.input file. In this exercise we will use the RACM-KPP gas and GOCART aerosol option (chem_opt=301) with anthropogenic and biogenic emissions, dust, sea salt, and DMS. Be sure to consider the update interval of the global emissions (monthly) as well as their vertical dimensions (kemit=1 as it is only surface data).
+    </p><p> emiss_opt = 5
+    </p><p> io_style_emissions = 2
+    </p><p> emiss_inpt_opt = 1
+    </p><p> chem_opt = 301
+    </p><p> kemit = 1 ! Note, the global emissions datasets are for the surface only. But it's recommended to use the anthropogenic emissions with vertical distribution (e.g. NEI2011 for the US)
+    </p><p> ! Set the dates and run time in the namelist. For convert emiss you need to set these settings to the initial time only (run_days=0, for 00Z 07-14-2010), because the emission files for single data/time only.
+    </p><p> run_days                            = ?,
+    </p><p> run_hours                           = 0,
+    </p><p> run_minutes                         = 0,
+    </p><p> run_seconds                         = 0,
+    </p><p> start_year                          = ?, 2010, 2000,
+    </p><p> start_month                         = ?,   07,   01,
+    </p><p> start_day                           = ?,   14,   24,
+    </p><p> start_hour                          = 00,   00,   12,
+    </p><p> start_minute                        = 00,   00,   00,
+    </p><p> start_second                        = 00,   00,   00,
+    </p><p> end_year                            = ?, 2010, 2000,
+    </p><p> end_month                           = ?,   07,   01,
+    </p><p> end_day                             = ?,   16,   25,
+    </p><p> ! Check this section of the namelist.input; You need to set up these settings correctly to read all the emission and GOCART background files
+    </p><p> auxinput5_interval_m                = ?,
+    </p><p> auxinput7_interval_m                = ?,
+    </p><p> auxinput8_interval_m                = ?,
+    </p><p>
+</p><p> io_form_auxinput5                   = ?,
+    </p><p> io_form_auxinput7                   = ?,
+    </p><p> io_form_auxinput8                   = ?,
+    </p><p>
+</p><p> ! Set all io_form* =2 (netcdf format)
+    </p><p> ! Set all auxinput*_interval_m to a large number, e.g. 100000 (these fields are read only at the start of your 2 day simulation)
+    </p><p> ! Set the following namelist options (=1) to simulate BB, dust, DMS and sea salt emissions.
+    </p><p> biomass_burn_opt                    = ?,
+    </p><p> dust_opt                            = ?,
+    </p><p> dmsemis_opt                         = ?,
+    </p><p> seas_opt                            = ?,
+    </p><p>
+</p><p> ! The following options are for aerosol-radiation interactions, so for now set them =0.
+    </p><p> aer_ra_feedback                     = ?,
+    </p><p> aer_op_opt                          = ?,
+    </p><p> opt_pars_out                        = ?,
+    </p><p> ! Note, climatological biogenic emissions are added to the anthropogenic emissions by prep_chem in this exercise, a simple approach. Check Exercise_megan_bio_emiss to use online biogenic emissions later.
+</p><p>***************************************************************************
+    </p><p> ! For reference these are the auxinput channels to read different emission files. Remember, in column 8 of the registry.chem file the auxiliary input port numbers are set and they have been assigned as:
+    </p><p> auxinput_5 -&gt; Anthropogenic emissions
+    </p><p> auxinput_6 -&gt; Biogenic emissions (BEIS, MEGAN)
+    </p><p> auxinput_7 -&gt; Surface biomass burning fields
+    </p><p> auxinput_8 -&gt; GOCART background fields
+    </p><p> auxinput_12 -&gt; Chemistry initial fields
+    </p><p> auxinput_13 -&gt; Volcanic ash emissions
+    </p><p> auxinput_14 -&gt; Aircraft emissions
+    </p><p> auxinput_15 -&gt; Green House Gas emissions
+    </p><p>
+</p><p>***************************************************************************
+    </p><p> Now link the wrfinput_d01 and wrfbdy_d01 (meteorology only) from the previous dust exercise.
+    
+    </p><p>ln -s ../Exercise_dust/wrfinput_d01 .
+    </p><p>ln -s ../Exercise_dust/wrfbdy_d01 .
+
+    </p><p>With the updated namelist.input file you can now run convert_emiss.exe. 
+    </p><p>nohup mpirun -np 8 convert_emiss.exe &amp;
+
+</p><p>The output files will be:
+
+    </p><p>wrfchemi_d01 -&gt; Anthropogenic emissions
+
+    </p><p>wrffirechemi_d01 -&gt; Surface biomass burning fields
+
+    </p><p>wrfchemi_gocart_bg_d01 -&gt; GOCART background fields
+
+
+</p><p>***************************************************************************
+    </p><p>Did you get a run time error when running convert_emiss.exe? Perhaps something like:
+
+    </p><p>READ GOCART BACKGROUND DATA
+    </p><p>PGFIO-F-219/unformatted read/unit=19/attempt to read/write past end of record.
+    </p><p>File name = wrf_gocart_backg unformatted, sequential access record = 2
+
+    </p><p>Or maybe
+
+    </p><p>READ GOCART BACKGROUND DATA
+    </p><p>forrtl: severe (67): input statement requires too much data, unit 19, file
+    </p><p>${your_directory_path}/wrf_gocart_backg
+
+    </p><p>If so, then you might:
+
+    </p><p>* have a bad link,
+
+    </p><p>* a zero-size file, or
+
+    </p><p>* a missing the GOCART backgroud file.
+
+    </p><p>Make sure the file link is correct.
+
+</p><p>***************************************************************************
+    </p><p>Use a netCDF data file viewer to examine your global emissions data. Does it look like it matches your domain (Europe), or a bunch of diagonal lines? It should look like the Mediterranean region. Is there fire emissions over Greece? Did you remember there were bad fires in Greece back in July of 2010?
+
+    </p><p>  If the global emissions, biomass burning, etc. files are correct, you will need to change the name of the wrfchemi_d01 file to include the initial date and time:
+    </p><p> ln -s wrfchemi_d01 wrfchemi_d01_2010-07-14_00:00:00
+    </p><p> Examine your namelist.input file making sure you have set the correct values of the proper vertical dimensions for global emissions (surface data only), auxiliary file update interval, etc. Be sure to turn on biomass burning, sea salt, DMS, etc. as the GOCART aerosol scheme is being used!
+    </p><p> Also be sure to have the run time of 2 days as you will be making a WRF-Chem simulation and not building global emissions from data files that vary daily or monthly.
+    </p><p> Make sure the met_em files is linked to the current directory.
+    </p><p> ln -s {your_wps_path}/met_em.d01.2010-07-14_* .
+    </p><p> ln -s {your_wps_path}/met_em.d01.2010-07-15_* .
+    </p><p> ln -s {your_wps_path}/met_em.d01.2010-07-16_00:00:00.nc  . 
+    </p><p> ! For real.exe you need to set the run time and dates to run the model for two days (07/14/2010-07/16/2010)
+    </p><p> ! With the namelist.input file set you can now run your run real.exe to get the GOCART background fields and biomass burning emissions data input the wrfinput file. If you do not do this there will be zero fields entered for biomass burning, etc. when you run wrf.exe
+    </p><p> nohup mpirun -np 4 ./real.exe &amp;
+    </p><p> Check that real.exe completely successfully:
+    </p><p> tail rsl.out.0000
+    </p><p> d01 2010-07-16_00:00:00 real_em: SUCCESS COMPLETE REAL_EM INIT
+    </p><p> Examine the wrfinput data file. Do you see the GOCART background fields in the wrfinput_d01 file (e.g. backg_oh)? Do you see the biomass burning emissions (e.g., ebu_in_co) in the surface fields as well?
+    </p><p> With the input and boundary conditions files (wrfinput and wrfbdy) built you can now run wrf.exe.
+    </p><p> nohup mpirun -np 8 ./wrf.exe &amp;
+    </p><p> Once again, when finished you should examine results of your simulation. Verify that sea salt aerosols exist in the run. Does the sea salt match the fine coarse particulate matter fields (PM10)? Are the SO2 and fire emissions correct? Can you see the effects of the fire emissions in the PM, or CO fields above the surface?
+
+    </p><p> Save your wrfout files (e.g. mv wrfout_d01_2010_07-14-00:00:00 wrfout_d01_2010-07-14_save).
+    </p><p> If you've survived so far, the next stage is to test the same chemistry option with direct feedback (Relax, this is for the 2nd day of the tutorial:))
+    </p><p> Finally, try turning aerosol direct feedback on in namelist.input (aer_ra_feedback, aer_op_opt, opt_pars_out, =1) and run again. Compare the results from this run with the wrfout file you saved from earlier (wrfout_d01_2010-07-14_save). The results should be different between the two output files. This difference is due to the radiative interactions with the aerosols. Looking at the last run's output, does the array related to extinction (EXTCOF55) have non-zero values? Compare these fields with the dust arrays. You should see there a locational relationship between dust and the optical properties.
+    </p><p> You can use ncdiff to generate a netCDF file that shows the differences between specified fields (first file minus second file), e.g.:
+    </p><p> ncdiff -v SWDOWN,RAINC,T2 wrfout_d01_2010-07-14_00:00:00 wrfout_d01_2010-07-14_00:00:00_save diff.out
+
+</p>
+<!--
+<BR><LI> Untar the WRF WPS code to your home directory
+</P>
+<P>tar -zxvf /kumquat/wrfhelp/SOURCE_CODE/ARW/WPS_bin.TAR.gz</P>
+<p></p>
+//-->
+<br/>
+<br/>
+<hr/>
+<p style="margin:0in;margin-bottom:.0001pt"><span style="font-family:Arial"><a href="../tutorialexercises.htm">Return to WRF-Chem Tutorial Page</a> </span></p>
+<p style="margin:0in;margin-bottom:.0001pt"><span style="font-family:Arial"><a href="https://ruc.noaa.gov/wrf/wrf-chem">Return to WRF-Chem Main Page</a> </span></p>
+</body>
+</html>

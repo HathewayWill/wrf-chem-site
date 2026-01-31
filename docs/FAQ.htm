@@ -1,0 +1,158 @@
+<html>
+<head>
+<meta content="Microsoft FrontPage 3.0" name="GENERATOR"/>
+<title>WRF-Chem: Frequently Asked Questions </title>
+</head>
+<body>
+<p align="center"><big>WRF-Chem: Frequently Asked Questions</big></p>
+<p> <font color="#FF5733" face="Helvetica"> Q: How do I obtain a copy of the WRF chemistry code? </font></p>
+<p> <font color="#000000" face="Helvetica"> A: You can download the WRF-Chem source code from the WRF site: <a href="http://www.wrf-model.org/users/users.php">http://www.wrf-model.org/users/users.php</a>. The chemistry section of the WRF-Chem model is available from the WRF model code download page.</font></p>
+<hr/>
+<p> <font color="#FF5733" face="Helvetica"> Q: Where can I download the WRF Preprocessing System (WPS) Geographical Input Data? How about the dust field variables (EROD, SANDFRAC and CLAYFRAC)?</font></p>
+<p> <font color="#000000" face="Helvetica"> A: You can download the data from the WRF site: <a href="http://www2.mmm.ucar.edu/wrf/users/download/get_sources_wps_geog.html">http://www2.mmm.ucar.edu/wrf/users/download/get_sources_wps_geog.html</a>. All dust field variables are included in the "Complete Dataset". </font></p>
+<hr/>
+<p> <font color="#FF5733" face="Helvetica"> Q: Which dust options are recommended to use in WRF-Chem?  </font></p>
+<p> <font color="#000000" face="Helvetica"> A: We recommend using one of the dust_opt = 1, 3, or 4. Note, the dust_opt = 2 has been disabled. </font></p>
+<hr/>
+<p> </p>
+<p> <font color="#FF5733" face="Helvetica"> Q: What are the chemistry namelist.input options? </font></p>
+<p> <font color="#000000" face="Helvetica"> A: The namelist.input options are discussed in chapter 4 of the User's Guide. In addition, the tutorial exercises demonstrate the steps involved in running the code and each exercice provides solutions that include the namelist.input file. </font></p>
+<p> </p>
+<hr/>
+<p> <font color="#FF5733" face="Helvetica"> Q: What data do I need to run a simulation with chemistry included? </font></p>
+<p> <font color="#000000" face="Helvetica"> A: One only needs to run the WRF WPS to get the dust fields and then run WRF with some chemistry capabilities included.
+<p>
+If you want to run more complex chemistry than just dust one needs to generate anthropogenic emissions data files. The methodology is discussed in the User's Guide and demonstrated in the tutorial exercises.</p>
+<p> </p>
+<hr/>
+<p> <font color="#FF5733" face="Helvetica"> Q: I compile the WRF model, but chemistry does not appear to have been compiled.  What do I need to do so that I will get a simulation with chemistry included? </font></p>
+<p> <font color="#000000" face="Helvetica"> A: The latest version of the WRF model requires environmental variables to be set.</font></p>
+<p>To compile the mass dynamic core of the WRF model and include chemistry, at a minimum one needs to set two environmental variables. These environmental variables are EM_CORE and WRF_CHEM.</p>
+<p> In the  bash shell environment use the commands:
+</p><li> export EM_CORE=1
+</li><li> export WRF_CHEM=1
+
+<p> and in the c-shell environment use the commands:
+</p></li><li> setenv EM_CORE 1
+</li><li> setenv WRF_CHEM 1
+<p> </p>
+Chapter 2 of the User's Guide discusses compiling the WRF-Chem code in more detail.
+<p> </p>
+<!--
+<hr>   </hr>
+<p> <font face="Helvetica" color="#FF5733"> Q: I am trying to run convert_emiss.exe (from WRF-Chem v3.8.1) to create my wrfchemi, wrffirechemi and wrfchemi_gocart_bg files. When I run convert_emiss, it creates the files, but they have zero time steps in them. How come?
+<p> <font face="Helvetica" color="#000000"> A: We&#8217ve found that starting the WRF-Chem 3.7 version release, the convert_emiss program stopped working. Therefore, we suggest using the convert_emiss program within WRF-Chem 3.6 (or older versions) to generate emission files. After generating emission files you can run the newer versions of WRF-Chem (e.g. 3.8.1) to do chemistry simulations. You don&#8217t need to generate new emissions files for every new release of WRF-Chem, unless you want to use a different emission inventory. </p>
+
+<p> We&#8217re working on a bug fix for convert_emiss and will announce when it&#8217s available. Please make sure you subscribe to the WRF-Chem email list to get our announcements: <A HREF="https://list.woc.noaa.gov/cgi-bin/mailman/listinfo/wrf-chem-discussions">https://list.woc.noaa.gov/cgi-bin/mailman/listinfo/wrf-chem-discussions</A>. </p>
+
+<p>  </p>
+-->
+<hr/>
+<p> <font color="#FF5733" face="Helvetica"> Q: Why am I unable to compile the WRF-Chem that was downloaded from the NCAR web site? </font></p>
+<p> <font color="#000000" face="Helvetica"> A: While we attempt to test the WRF-Chem code on a wide variety of computing platforms, there are occasionally some errors that slip through web of the tests.  When we are notified of a possible code error, we examine the code, verify that there is in fact an error and then look for and test the a solution.  When the error solution is fully tested and confirmed, the updated code is made available on the WRF-Chem known-problems web site (see links on WRF-Chem web page). This process can take from several minutes to several weeks to complete.</font></p>
+<p>When you get a WRF-Chem compile error, one should first make sure your code is up to date with the known-problems.  If the error then persists, then examine your compile log for the <bold>first</bold> error statement. Most likely the solution to the error will be a relatively easy fix and you can report the error/solution to either WRF help or (if it is related to the chemistry code) WRF-Chem help.  If you are unable to determine how to resolve the error on your own, please contact WRF help or WRF-Chem help for assistance and we will help you resolve the compilation conflict.</p>
+<p> </p>
+<hr/>
+<p> <font color="#FF5733" face="Helvetica"> Q: Error: MEGAN biogenics requires ne_area to be equal or greater than num_chem </font></p>
+<p> <font color="#000000" face="Helvetica"> A: The num_chem is the number of species in the chemical mechanism. For example, for chem_opt = 11, num_chem = 117, so try increasing ne_area to 117 or higher. You can see the species associated with the chemical mechanism in Registry/registry.chem, listed after chem_opt==11.
+<hr/>
+<p> <font color="#FF5733" face="Helvetica"> Q: I was unable to compile the emiss_v03.F using the provided PGF compile example.  How do I compile the same code using ifort? </font></p>
+<p> <font color="#000000" face="Helvetica"> A: The ifort compile command should be similar to the following: </font></p>
+ifort -O2 -FR -convert big_endian emiss_v03.F -I /opt/netcdf/include -L/opt/netcdf/lib -lnetcdf
+where the path should be corrected to match your path to the netCDF libraries.</font></p>
+<hr/>
+<p> <font color="#FF5733" face="Helvetica"> Q: How are the gas phase emissions units converted from mole per km^2 per hour to the change in parts per million used by WRF-Chem? </font></p>
+<p> <font color="#000000" face="Helvetica"> A: It is assumed that you have examined the anthropogenic emissions web page that discusses how one can build the emissions using the emiss_v03.F program.</font></p>
+<p>The units of all gas species in the binary files created with emiss_v03.F have units of mole/(km*km)/hr.  The units of all aerosol species are microgram/(m*m)/s and they are treated differently than the gas phase emissions - hence the different emissions units.  (These are also units of elevated (point) sources for each vertical grid). </p>
+<p> </p>
+<p>In module_emissions_anthropogrnics.F WRF-Chem code, the subroutine add_anthropogenics has the variable "conv_rho" that is used to convert the emissions units (gas-phase chemistry) to ppm (note that the model works with them as a mixing ratio). Specifically, conv_rho is used in module_emissions_anthropogenics.F to convert the gas-phase emissions from mole/(km*km)/hr into delta-ppmv, where delta-ppmv is the incremental addition to the gas phase species (units of ppmv).</p>
+<p> </p>
+<p>The calculation of conv_rho needs:
+</p></li><li>rho_phy: the air density in kg/(m3),
+</li><li>dtstep: the meteorology big time step in seconds,
+</li><li>dz8w: the vertical grid spacing (delta-z) for the lowest layer (or the layer for the emissions) in meters</li>
+<p> </p>
+<p>Let E be emission in mole(/km-km)/hr from binary files (this is the output data from the emiss_v03.F program)</p>
+<p>Then  </p>
+<p> </p>
+<p>E*(1.E-3)*(1.E-3)/(dz8w(I,K,J)*3600.)  = E2 =emission in mole/(m^3)/sec </p>
+<p> </p>
+<p>And then let D be the dry air density in mole/(m3), or 
+
+</p><p> </p>
+<p>D=rho_phy(i,k,j)/(.02897 kg/mole)</p>
+<p> </p>
+<p>And the mixing ratio in units of parts per million (ppmv) is equal to 1.E6 * mixing ratio where the mixing ratio units is (mole/mole).</p>
+<p> </p>
+<p>So that leads to the conv_rho variable which converts the emissions units to parts per million being:</p>
+<p> </p>
+conv_rho = (1.E6)*dtstep*E2/D = E*dtstep*8.047E-6/(rho_phy(I,k,J)*dz8w(i,k,j))
+<p> </p>
+So, the chemical emissions that are read into the WRF-Chem model and are multiplied by "conv_rho" to change the units.
+<p> </p>
+<hr/>
+<p> <font color="#FF5733" face="Helvetica"> Q: How do I generate the 3-D anthropogenic emissions data files for my model domain located over the United States? </font></p>
+<p> <font color="#000000" face="Helvetica"> A:  Anthropogenic emissions data for the 48 contiguous states and parts of Canada and Mexico have been made available for download by the <a href="https://www.esrl.noaa.gov/csd/">NOAA Earth System Research Laboratory - Chemical Sciences Division.</a>  The process to create anthropogenic emissions input data files from this data is as follows: </font></p>
+<li>Modify emiss_v03.F to set map and grid parameters for your particular domain.
+ 
+</li><li>Compile emiss_v03.F and run emiss_v03 using raw emissions data to
+ generate WRF emissions files in binary format (file names are set in emiss_v03.F to be
+wrfem_00to12Z and wrfem_12to24Z).  These filenames need to match the name of the binary input data file in convert_emiss.F (in the WRFV3/chem directory).
+
+ 
+</li><li>If necessary, change namelist.input file in the WRFV3/test/em_real directory:
+  <p>interval_seconds=3600,  (hourly update to the emissions data)</p>
+<p>chem_opt=1,</p>
+<p>chem_in_opt=0,</p>
+<p>emiss_opt=3,</p>
+</li><li>Run real.exe to create wrfinput data file - need header information for WRF chemical emissions data files.
+ 
+</li><li>Compile emi_conv (in WRFV3 directory) to build the emissions conversion package.
+ 
+</li><li>Run convert_emiss.exe for 11 hours starting at 0000 UTC and ending at 1100 UTC and save the netcdf wrfchemi_d01 data file as wrfchemi_00z_d01.
+
+</li><li>Run convert_emiss.exe for 11 hours starting at 1200 UTC and ending at 2300 UTC and save the netcdf wrfchemi_d01 file as wrfchemi_12z_d01.
+
+<p> </p>
+<hr/>
+<p> <font color="#FF5733" face="Helvetica"> Q: What species are included in the chemistry and what are the units for chemical, aerosols and emissions arrays? </font></p>
+<p> <font color="#000000" face="Helvetica"> A: The registry.chem file contains the names and dimensions of the chemical species used by the WRF-Chem model. </font></p>
+<p>The gas phase chemistry variables are in units of parts per million (ppm).</p>
+<p>The the original version of the model (WRFV1) had aerosol units in  mixing ratio (microgram of aerosol per kg of dry air). The 3-d variable "alt" (inverse density) should be included to the list of output variables in the registry.chem registry file if you desire to convert from mixing ratio to microgram/m3.  This is done by dividing the desired aerosol variable or variables by "alt". </p>
+<p>With later versions of the model all aerosols have units of micrograms per cubic meter.</p>
+<p> The chemical emissions are in units of mole per square kilometer per hour for the gaseous chemical species and microgram per square meter per second (microgram/(m^2 s)) for the aerosol species.</p>
+<p>The following is important if one wants to use your own biogenic emissions instead of the Gunther scheme. In module_bioemi_beis313.F, after the biogenic emissions are read into the model, a conversion factor which changes emissions from mole/km^2/hr to ppm is calculated. The 4.828E-4/rho_phy term of this factor converts mole/km^2/hr to ppm*m/min (contains conversion factors of molecular weight of air = 0.02897 kg/mol, hours to minutes, and kilometers squared to meters squared). The rest of the factor converts minuntes to seconds, multiplies by the chemistry time step in seconds, and divides by layer thickness in meters.  [Thanks goes to Gregory Frost (NOAA-ESRL-CSD, CIRES) for this explanation]</p>
+<p> </p>
+<hr/>
+<p> <font color="#FF5733" face="Helvetica"> Q: Which routines can be used to plot the output from WRF-Chem? </font></p>
+<p> <font color="#000000" face="Helvetica"> A: Any plotting routine that can read NetCDF formatted data can be used to plot the data from a WRF-Chem simulation. This includes, but is not limited to NCL, Vis5d and VAPOR routines that can be downloaded and used with the WRF model. </font></p>
+<p> </p>
+<hr/>
+<p> <font color="#FF5733" face="Helvetica"> Q: I want to make a WRF-Chem run, but the domain is not located over the U.S.  Is there some place I can get biomass burning data for the world? </font></p>
+<p> <font color="#000000" face="Helvetica"> A: You can get the wild fire location data for the entire world from MODIS data download web sites.  The WRF-Chem User's Guide discusses the gathering and use of biomass burning data in more detail.
+</font></p>
+<p> </p>
+<hr/>
+<p> <font color="#FF5733" face="Helvetica"> Q: I am using chem_opt=300 with biomass burning emissions and GOCART background. I get this error when I turn on aerosol feedback:  </font></p>
+<p> <font color="#FF5733" face="Helvetica"> -------------- FATAL CALLED ---------------
+</font></p>
+<p> <font color="#FF5733" face="Helvetica"> FATAL CALLED FROM FILE:  <stdin>  LINE:      76
+</stdin></font></p>
+<p> <font color="#FF5733" face="Helvetica"> mieaer /refr/ outside range 1e-3 - 10 refr=     0.10003E+02
+</font></p>
+<p> <font color="#000000" face="Helvetica"> A: The error is due to the calculated refractive index (10.003) slightly exceeding the preset upper limit (10). The solution is to increase the upper limit a little bit. For example, to revise the upper limit into 15, make the following modification in WRFV3/chem/module_optical_averaging.F, and recompile the model.
+</font></p>
+<p> <font color="#000000" face="Helvetica"> Line 4678: if(abs(refr).gt.10.0.or.abs(refr).le.0.001)then
+</font></p>
+<p> <font color="#000000" face="Helvetica"> --&gt; if(abs(refr).gt.15.0.or.abs(refr).le.0.001)then
+</font></p>
+<p> </p>
+<hr/>
+<p align="center">Back to Main <a href="index.html"><font face="Arial">WRF-Chem Model</font></a> Webpage</p>
+<p> </p>
+</li></font></p></body>
+<p class="MsoNormal"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+<p align="center"><small><em>This page developed by Steven Peckham and Georg Grell, and maintained by Ka Yee Wong<br/>
+Model questions can be posted here <a href="http://forum.mmm.ucar.edu/">WRF-Chem Support </a>.<br/>
+</em>Last modified: Jan 10, 2018</small></p>
+</html>

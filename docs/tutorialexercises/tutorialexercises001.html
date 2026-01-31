@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="CONTENT-TYPE"/>
+<title></title>
+<!--
+		@page { margin: 0.79in }
+		P { margin-bottom: 0.08in }
+	-->
+</head>
+<body dir="LTR" lang="en-US">
+<p align="CENTER"><b>EXERCISE 1</b></p>
+<p>
+</p>
+<p> Exercise Dust: Building the WRF domain to include dust erosion map and simulation of dust transport using WRF-Chem.
+</p><p>
+</p>
+<p>
+</p><p>!You need to install WPS3.9 and WRF-Chem 3.9 on your machine. You can call them ${WPS} and ${WRF-Chem}.</p>
+<p>!For the dust exercise you need to download the erodibility dataset.</p>
+<p>! You can download the data from the WRF site: <a href="http://www2.mmm.ucar.edu/wrf/users/download/get_sources_wps_geog.html">http://www2.mmm.ucar.edu/wrf/users/download/get_sources_wps_geog.html</a>. All dust field variables are included in the "Complete Dataset". </p>
+<p>!Load necessary libraries: impi, netcdf, ncl, nco, intel</p>
+<p>!Here is the namelist you need to run this exercise:  <a href="exe001/namelist.input">Namelist</a>.
+</p>
+<p>!Here is the data you need to run this exercise:  <a href="ftp://aftp.fsl.noaa.gov/divisions/taq/tutorialexercises/exe001/">Data</a>.
+</p>
+<p>cd ${WPS}</p>
+<p>!Examine the namelist.wps</p>
+<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+<p>!BEFORE WE RUN GEOGRID</p>
+<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+<p>
+</p><p>cd geogrid</p>
+<p>
+</p><p>ln -svf GEOGRID.TBL.ARW_CHEM GEOGRID.TBL</p>
+<p>cd ..</p>
+<p>
+</p><p>./geogrid.exe</p>
+<p>
+</p><p>!You will see</p>
+<p>
+</p><p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+<p>!  Successful completion of geogrid.  !</p>
+<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+<p>
+Using the WPS, build a single WRF domain with a Lambert Conformal projection
+    using geogrid.exe.
+   The simulation will will use 6 h GFS analysis data starting on 14 July 2010 and ending on 19 July 2010.
+   The domain should be (41, 41) grid points in size and use 100 km
+   grid spacing.  Center the domain at 35 degrees north and 25 degrees
+   east. Your namelist.wps should have settings as follows:
+</p>
+<p>
+</p>
+<img height="500" src="../wrf_tutorial_exercises_v35/exercise_1_domain.jpg" width="500"/>
+<p>
+</p>
+<p>
+</p><p>! Visualize the geo_em.d01.nc file: </p>
+<p> ncview geo_em.d01.nc</p>
+<p>! Check such fields as HGT_M, LANDMASK, EROD, CLAYFRAC, SANDFRAC...</p>
+<p>! Processed binary files from the GFS model are provided (FILE:2010-07-*)</p>
+<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+<p>! RUN METGRID</p>
+<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+<p>./metgrid.exe</p>
+<p>! You will see</p>
+<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+<p>!  Successful completion of metgrid.  !</p>
+<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+<p>! Run MODEL (dust_opt=1)</p>
+<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+<p>cd ${WRF-Chem}</p>
+<p>ln -svf ${WPS}/met_em.* .</p>
+<p>! Check the created soft links to met_em* files</p>
+<p>! Copy the sample namelist.input</p>
+<p><font face="Arial"><a href="exe001/namelist.input">namelist.input</a> </font>
+</p><p>!make sure "chem_opt=401"</p>
+<p>!try dust_opt=1</p>
+<p>!Run real.exe by typing the following command:</p>
+<p>mpirun -np 8 ./real.exe</p>
+<p>tail rsl.out.0000 </p>
+<p>! You will see</p>
+<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+<p>d01 2010-07-16_00:00:00 Timing for output          0 s.</p>
+<p>d01 2010-07-16_00:00:00 Timing for loop #    9 =          0 s.</p>
+<p>d01 2010-07-16_00:00:00 real_em: SUCCESS COMPLETE REAL_EM INIT</p>
+<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+<p>! Check the wrfinput_d01 file</p>
+<p>ncview wrfinput_d01</p>
+<p>! Check these variables: DUST_1, EROD, CLAYFRAC</p>
+<p>
+</p>
+<img src="../wrf_tutorial_exercises_v35/exercise_1_erod.jpg"/>
+<p>
+</p>
+<p>! Run wrf.exe:</p>
+<p>mpirun -np 8 ./wrf.exe</p>
+<p>tail rsl.out.0000</p>
+<p>! You should see:</p>
+<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+<p>d01 2010-07-16_00:00:00 wrf: SUCCESS COMPLETE WRF</p>
+<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+<p>! Create a directory: Dust1</p>
+<p>mv wrfout_d01_2010-07-14_00\:00\:00 Dust1/</p>
+<p>cp namelist.input Dust1/</p>
+<p>cd Dust1</p>
+<p>! Some diagnostics of the simulated dust fields</p>
+<p>ncdump -v Times wrfout_d01_2010-07-14_00:00:00</p>
+<p>ncview wrfout_d01_2010-07-14_00:00:00</p>
+<p>! Using NCL </p>
+<p>ncap -v -s "total_dust=DUST_1+DUST_2+DUST_3+DUST_4+DUST_5" wrfout_d01_2010-07-14_00\:00\:00 dust1_all.nc</p>
+<p>ncl plot.ncl</p>
+<p>! open plot.pdf</p>
+<p>evince plot.pdf</p>
+<p>! Check the dust* concentrations</p>
+<p>! Visualize the simulated dust fields (ncview plots, Time series and 2d plots, animations)</p>
+<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+<p>! Run WRF-Chem for another dust option</p>
+<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+<p>! Repeat the same for dust_opt=3</p>
+<p>! change dust_opt=1 to dust_opt=3 in namelist</p>
+<p>vi namelist.input</p>
+<p>mpirun -np 8 ./wrf.exe</p>
+<p>ncap -v -s "total_dust=DUST_1+DUST_2+DUST_3+DUST_4+DUST_5" wrfout_d01_2010-07-14_00\:00\:00 dust3_all.nc</p>
+<p>ncdiff dust3_all.nc ../Dust1/dust1_all.nc diff_dust3_1.nc</p>
+<p>You can also try dust_opt=4 and compare with dust_opt=1 and dust_opt=3</p>
+<!--
+<BR><LI> Untar the WRF WPS code to your home directory
+</P>
+<P>tar -zxvf /kumquat/wrfhelp/SOURCE_CODE/ARW/WPS_bin.TAR.gz</P>
+<p></p>
+//-->
+<br/>
+<br/>
+<hr/>
+<p style="margin:0in;margin-bottom:.0001pt"><span style="font-family:Arial"><a href="../tutorialexercises.htm">Return to WRF-Chem Tutorial Page</a> </span></p>
+<p style="margin:0in;margin-bottom:.0001pt"><span style="font-family:Arial"><a href="https://ruc.noaa.gov/wrf/wrf-chem">Return to WRF-Chem Main Page</a> </span></p>
+</body>
+</html>

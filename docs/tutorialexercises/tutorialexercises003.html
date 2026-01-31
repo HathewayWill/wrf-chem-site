@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<body dir="LTR" lang="en-US">
+<p align="CENTER"><b>EXERCISE 3</b></p>
+<p>
+</p>
+<p> Exercise: US Emission
+</p><p>
+</p>
+<p>
+</p><p># In this exercise you can generate anthropogenic emissions for WRF-Chem domain over CONUS in 60km resolution.</p>
+<p> ************************************************************************************************* </p>
+<p>Here is the emission code you need to run this exercise:  <a href="ftp://aftp.fsl.noaa.gov/divisions/taq/tutorialexercises/exe003/Run_emiss04/">Run_emiss04 </a>.
+</p><p># Check the Fortran programs
+</p><p>emiss_v04_CONUS60km.F
+
+</p><p># The following lines are from emiss_v04_CONUS60km.F modified for the US60km domain 
+</p><p>! Following for WRF-Chem 60 km domain (Polar Stereographic), no nest, continental U.S. (July 2008)
+     </p><p>INTEGER    :: iproj = 1
+     </p><p>REAL       :: rekm = 6370.
+     </p><p>REAL       :: dx = 60.E3
+     </p><p>REAL       :: dxbigdo = 60.E3
+     </p><p>REAL       :: xlatc =  45.00
+     </p><p>REAL       :: xlonc = -97.00
+     </p><p>REAL       :: clat1 = 45.00
+     </p><p>REAL       :: clat2 = 33.00
+     </p><p></p><p>INTEGER    :: inest1 = 0
+     </p><p>REAL       :: xnesstr = 1.00
+     </p><p>REAL       :: ynesstr = 1.00
+     </p><p>INTEGER    :: il = 81
+     </p><p>INTEGER    :: jl = 51
+     </p><p>INTEGER    :: starthr = 01
+     </p><p>INTEGER    :: maxhr = 24
+     </p><p>INTEGER    :: endhr 
+
+</p><p> ************************************************************************************************* </p>
+<p>Here is the emission data you need to run this exercise:  <a href="ftp://aftp.fsl.noaa.gov/divisions/taq/emissions_data_2011/">NEI_input </a>.
+</p>
+<p># Extract the em11v1_file1.tar and em11v1_file2.tar and name the directory "NEI_input" and update the "NEI_input" path in emiss_v04_CONUS60km.F</p>
+<p>      DATA POINDIR /'/{your_path}/NEI_input/point/' / </p>
+<p>      DATA AREADIR /'/{your_path}/NEI_input/' /</p>
+<p># This program needs to be compiled using the following command
+</p><p># ifort -FR -convert big_endian emiss_v04_CONUS60km.F
+</p><p> ************************************************************************************************* </p>
+<p># Since running emiss_v04_CONUS60km.exe takes long time to complete, users don't want to generate binary files for the US60km domain. These files are already provided in: <a href="ftp://aftp.fsl.noaa.gov/divisions/taq/tutorialexercises/exe003/NEI11_processed/">NEI11_processed</a>.
+</p><p> ************************************************************************************************* </p>
+<p># The wrfem* files are binary, we need to convert them to netcdf format so WRF-Chem can read them 
+
+</p><p>###### This part of the exercise uses runs convert_emiss to generate anthropogenic emission files in netcdf format#####
+</p><p>Go to your WRF run directory where the convert_emiss.exe located and run the following commands
+
+</p><p>ln -sf ${your_path}/NEI11_processed/wrfem_00to12Z wrfem_00to12z_d01
+</p><p>ln -sf ${your_path}/NEI11_processed/wrfem_12to24Z wrfem_12to24z_d01
+
+</p><p>Here is the input data and namelist.input file:  <a href="ftp://aftp.fsl.noaa.gov/divisions/taq/tutorialexercises/exe003/Input_files/">input data and namelist </a>.
+</p><p>ln -sf ${your_path}/Input_files/wrfinput_d01_00Z wrfinput_d01
+</p><p># Modify the namelist.input file
+</p><p># set the start_hour and end_hour to 00 and 11 respectively.
+</p><p># Set run_hours to 12 
+</p><p># Set emiss_opt to 3, kemit=20 (number of vertical levels for the emissions!)
+#
+# 
+#
+</p><p># Run
+</p><p>nohup mpirun -np 8 ./convert_emiss.exe &amp;
+
+</p><p># After the run is complete, check the log files:
+</p><p>tail rsl.error.0000
+
+</p><p># Make sure it ends with this statement:
+</p><p>DONE WRITING TIME DEPENDENT EMISSIONS FILE
+    </p><p>EMISSIONS CONVERSION : end of program
+
+</p><p># Now generate the emissions for next 12 hours
+</p><p># We need wrfinput file for 12Z
+</p><p>ln -sf ${your_path}/Input_files/wrfinput_d01_12Z wrfinput_d01
+</p><p># In the namelist set the start_hour and end_hour to 12 and 23 respectively.
+</p><p># Run
+</p><p>nohup mpirun -np 8 ./convert_emiss.exe &amp;
+
+</p><p># Check the log and both wrfchemi* files
+</p><p># e.g. ncview wrfchemi_00z_d01
+</p><p># Check the Times in both emission files:
+</p><p>ncdump -v Times wrfchemi_*
+
+</p><p># Examine the anthropogenic emissions from the EPA NEI-2011 inventory for different species- their magnitude, spatial distribution and diurnal cycle for this domain
+
+
+</p>
+<!--
+<BR><LI> Untar the WRF WPS code to your home directory
+</P>
+<P>tar -zxvf /kumquat/wrfhelp/SOURCE_CODE/ARW/WPS_bin.TAR.gz</P>
+<p></p>
+//-->
+<br/>
+<br/>
+<hr/>
+<p style="margin:0in;margin-bottom:.0001pt"><span style="font-family:Arial"><a href="../tutorialexercises.htm">Return to WRF-Chem Tutorial Page</a> </span></p>
+<p style="margin:0in;margin-bottom:.0001pt"><span style="font-family:Arial"><a href="https://ruc.noaa.gov/wrf/wrf-chem">Return to WRF-Chem Main Page</a> </span></p>
+</body>
+</html>

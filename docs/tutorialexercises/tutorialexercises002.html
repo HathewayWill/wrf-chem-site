@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="CONTENT-TYPE"/>
+<title></title>
+<meta content="OpenOffice.org 3.1  (Unix)" name="GENERATOR"/>
+<meta content="Steven Peckham" name="AUTHOR"/>
+<meta content="20090707;7380800" name="CREATED"/>
+<meta content="Steven Peckham" name="CHANGEDBY"/>
+<meta content="20090707;7384900" name="CHANGED"/>
+<style type="text/css">
+	<!--
+		@page { margin: 0.79in }
+		P { margin-bottom: 0.08in }
+	-->
+	</style>
+</head>
+<body dir="LTR" lang="en-US">
+<p align="CENTER"><b>EXERCISE 2</b></p>
+<p>
+</p>
+<p> Exercise Volcanic Ash: Using the the prep_chem tool to conduct volcanic ash simulation
+</p><p>
+</p>
+<p>
+</p><p>***************************************************************************
+
+</p><p>Purpose: To familiarize the user with the available global volcanic data set. This data set uses a program called "prep_chem_sources" to read the grid location and volcano information and map the eruption data to the user specified simulation domain.
+</p><p>The use of the prep_chem_sources program is complex and requires the user to be familiar with the simulation domain mapping information, the location of various data sets and where they are obtained as well as located on their particular system. Also, the user needs to be very familiar with the WRF-Chem registry (WRFV3/Registry/registry.chem) as the conversion process for this data that relies on the correct specification of chemistry namelist options. See the WRF-Chem Quick_start guide, the User's guide as well as the WRF-Chem <a href="../FAQ.htm"> FAQ </a>  web page for additional information.
+</p><p>This exercise demonstrates the methodology for making a WRF-Chem forecast. All forecasts should follow the process shown here which is:
+</p><p>Produce a WRF simulation for your domain of interest with chemistry turned off.
+</p><p>Generate emissions data file for the domain and chemical mechanism of interest and write them into an intermediate file.
+</p><p>Convert the emission into a WRF chemical emissions input file.
+</p><p>Produce a new WRF simulation for your domain of interest with chemistry.
+</p><p>***************************************************************************
+
+</p><p>Please finish the <a href="tutorialexercises001.html">Exercise1</a> before you try this exercise!
+
+</p><p>***************************************************************************
+
+</p>
+<p>1. Before starting, it is assumed that the previous WRF-Chem emissions tutorial exercises have been finished. If the previous exercises have not been done, please return to the main emissions tutorial page and do the skipped emissions tutorial exercise(s).
+
+</p><p>2. Be sure your environmental variables are set. You don't have to compile WRFV3, but it is always a good idea to have them set.
+
+</p><p>3. Go to your prep_sources_chem run directory under the {Run_prep} directory.
+</p><p>cd ${Run_prep}
+</p><p>cp  <a href="exe002/prep_chem_sources.inp">prep_chem_sources.inp</a>
+</p><p>4. Edit the prep_sources_chem.inp input file settings to have emissions produced for 00UTC 14 July 2010 and add in the volcanic ash. This is accomplised by turning on use_volcanoes, providing the volcano_index and the beginning time of the volcanic eruption (assume run start time).
+
+</p><p>ihour=00,
+</p><p>iday=14,
+</p><p>imon=07,
+</p><p>iyear=2010,
+</p><p>use_volcanoes=1,
+</p><p>volcano_index =9, !Mount Vesuvius (Italy)
+</p><p>begin_eruption='201007140000', !begin time UTC of eruption YYYYMMDDhhmm
+
+</p><p>"""""""""""OPTIONAL"""""""""""
+</p><p>""""""""""""START"""""""""""""
+</p><p>But what if I want a different volcano? The volc_emissions.f90 routine in the PREP_CHEM_SOURCES/src directory has a listing of 1535 volcanos from around the world. Look through the table at the beginning of the routine and find the one you want and remember the integer value in the comments on the right hand side.
+
+</p><p>'WESTEIFELVOLCFIELD '&amp;! 1
+</p><p>,'CHAINEDESPUYS '&amp;! 2
+</p><p>,'OLOTVOLCFIELD '&amp;! 3
+</p><p>,'CALATRAVAVOLCFIELD '&amp;! 4
+
+</p><p>Enter the integer value as the volcano_index in your prep_chem_sources.inp file.
+
+</p><p>"""""""""""OPTIONAL"""""""""""
+</p><p>"""""""""""""END""""""""""""""
+
+</p><p>5. run prep_chem_sources_RADM_WRF_FIM.exe. You should see the following message at the end of a successful run.
+</p><p>=&gt; ------------------------------------------------------
+</p><p>=&gt; Volcanoes Eruption Section ---------------------------
+</p><p>=&gt; ------------------------------------------------------
+</p><p>=&gt; Gocart Background Section ---------------------------
+</p><p>writing spc = DMS 41 41 12
+</p><p>DMS for month= 7
+</p><p>gocart_bg_spc_nameDMS
+</p><p>writing spc=EROD 41 41 3
+</p><p>writing spc=H2O2 41 41 55
+</p><p>writing spc=OH 41 41 55
+</p><p>writing spc=NO3 41 41 55
+
+</p><p># (No, there is not a nice ending statement at this time.)
+
+</p><p>6. Verify that the emissions data exists in the prep_chem_sources directory and that their size is (approximately) correct. Depending upon your system and data used the file sizes could vary by a small fraction.
+</p><p>WRF-T-2010-07-14-000000-g1-volc.bin _____________ 33768 bytes
+</p><p>WRF-T-2010-07-14-000000-g1-gocartBG.bin ________ 1136624 bytes
+</p><p>WRF-T-2010-07-14-000000-g1-bb.bin _______________ 235672 bytes
+</p><p>WRF-T-2010-07-14-000000-g1-ab.bin _______________ 181816 bytes
+
+</p><p>7.  
+Link these files to the ${Run_convert_emiss}  directory since the convert_emiss.exe in WRF-Chem v3.8 does not work. So we have to use v3.6 to do the convert_emiss.exe.
+
+</p><p>ln -sf ../Run_prep/WRF-T-2010-07-14-000000-g1-gocartBG.bin wrf_gocart_backg
+</p><p>ln -sf ../Run_prep/WRF-T-2010-07-14-000000-g1-ab.bin emissopt3_d01
+</p><p>ln -sf ../Run_prep/WRF-T-2010-07-14-000000-g1-bb.bin emissfire_d01
+</p><p>ln -sf ../Run_prep/WRF-T-2010-07-14-000000-g1-volc.bin volc_d01
+
+</p><p>8. Copy namelist.input and wrfinput_d01 from ${Exercise_volcanic_ash} and set the correct options for the namelist.input file in your ${Run_convert_emiss} directory. Using settings for dust, sea salt, DMS, and biomass burning will not hurt the conversion process for volcanic ash so you can leave those settings alone. Also, be sure that the settings for the auxiliary input file values are correct or there will be no data read in or values assigned in the output file. Remember, in column 8 of the registry.chem file the auxiliary input port numbers are set and they have been assigned as:
+
+</p><p>auxinput_5 -&gt; Anthropogenic emissions
+</p><p>auxinput_6 -&gt; Biogenic emissions (BEIS, MEGAN)
+</p><p>auxinput_7 -&gt; Surface biomass burning fields
+</p><p>auxinput_8 -&gt; GOCART background fields
+</p><p>auxinput_12 -&gt; Chemistry initial fields
+</p><p>auxinput_13 -&gt; Volcanic ash emissions
+</p><p>auxinput_14 -&gt; Aircraft emissions
+</p><p>auxinput_15 -&gt; Green House Gas emissions
+
+</p><p>9. You have to edit the model time, turn on the emiss_opt_vol=1
+
+ </p><p>run_days                            = 2,
+ </p><p>start_year                          = 2010,
+ </p><p>start_month                         = 07,
+ </p><p>start_day                           = 14,
+ </p><p>end_year                            = 2010,
+ </p><p>end_month                           = 07,
+ </p><p>end_day                             = 16,
+
+ </p><p>io_form_auxinput13                  = 2,
+
+ </p><p>emiss_opt_vol                       = 1,
+
+</p><p>10. With the updated namelist.input file you can now run convert_emiss.exe. 
+
+</p><p>./convert_emiss.exe
+
+</p><p>The output files for volcanic ash is
+
+</p><p>wrfchemv_d01 -&gt; Volcanic Ash emissions
+
+</p><p>And the convert_emiss.exe program text output should say similar to the following:
+
+ </p><p>*********************************************************************
+
+ </p><p>START DATE 2010-07-14_00:00:00     5184000       21600
+ </p><p>END DATE 2010-07-16_00:00:00
+  </p><p>I am reading global volcanic emissions, dims: =     1    40     1    40
+  </p><p>OPENED FILE: volc_d01
+  </p><p>OPEN EMISSIONS WRF file for emissions coming from volcano data set
+    </p><p>EMISSIONS CONVERSION : end of program
+
+ </p><p>*********************************************************************
+
+</p><p># Use a netCDF data file viewer to examine the volcanic ash emissions data. Does it look like it matches your domain?
+
+</p><p>ncview wrfchemv_d01
+
+</p><p># Look at E_VASH9 e.g. (press the "Linear" button)
+
+</p><p>11. If the volcanic ash emissions are correct, move or link the file to the ${Run_chem} directory.
+
+    </p><p>link the  wrfchemv_d01 file to you ${Run_chem}
+
+</p><p>12. in the namelist.input set
+    </p><p>chem_opt=400
+    </p><p>emiss_opt_vol=1	 
+
+</p><p>13.With the namelist.input file set you can run real.exe to produce the wrfinput file.
+</p><p>Examine the wrfinput data file. Do you see data in the GOCART background fields? You will find 10 "vash" arrays in the wrfinput file, but the volcano has not erupted so they will all be zero.
+
+</p><p>./real.exe
+
+</p><p># You will see "d01 2010-07-16_00:00:00 real_em: SUCCESS COMPLETE REAL_EM INIT" in the rsl.error.0000.
+
+</p><p>14.With the input and boundary conditions files built you can now run wrf.exe. As volcanic emissions are needed during the WRF run you should keep auxinput13 turned on.
+
+</p><p>./wrf.exe
+
+</p><p>It will probably take approximately 5 minutes to finish the simulation on your computer.
+
+</p><p>15.Once again, when finished you should examine results of your simulation. Verify that the model text output file (rsl.out.0000) contains a messages saying:
+</p><p>mediation_integrate: med_read_wrf_volc_emiss: Open file wrfchemv_d01
+</p><p>mediation_integrate: med_read_wrf_volc_emiss: Read volcanic ash emissions
+
+</p><p>16. Examine the WRF output file. Do you see the volcanic ash in the vash_1 through vash_10 fields above the surface? Does the ash evolve in time?
+
+</p><p>17. What if my particular eruption does not have the standard height as defined in the code? Can I change the plume height? The answer is yes, by setting the ash emissions height in the chemistry namelist. For example, if the plume should go up to 20,000 km one can set the ash emissions height as follows:
+</p><p>emiss_ash_hgt = 20000.,
+
+</p><p>18. Save the wrfoutput file to a new name (wrfout_volc1 for example).
+
+</p><p>19. Set the emissions ash height to 20 km and rerun wrf.exe. Compare the results with the default settings. Do you see any differences? Don't forget to adjust the scale as a deep eruption is assumed to put out a lot more ash than a shallow eruption.
+
+</p><p>This concludes WRF-Chem emissions tutorial for volcanic ash simulation.
+
+</p>
+<!--
+<BR><LI> Untar the WRF WPS code to your home directory
+</P>
+<P>tar -zxvf /kumquat/wrfhelp/SOURCE_CODE/ARW/WPS_bin.TAR.gz</P>
+<p></p>
+//-->
+<br/>
+<br/>
+<hr/>
+<p style="margin:0in;margin-bottom:.0001pt"><span style="font-family:Arial"><a href="../tutorialexercises.htm">Return to WRF-Chem Tutorial Page</a> </span></p>
+<p style="margin:0in;margin-bottom:.0001pt"><span style="font-family:Arial"><a href="https://ruc.noaa.gov/wrf/wrf-chem">Return to WRF-Chem Main Page</a> </span></p>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<html>
+<head>
+<title>Tutorial Exercises For WRF-Chem Version 4.0</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="meteorology, mesoscale, microscale, weather modeling, forecasting weather, weather prediction, predictability, cloud systems, boundary layers, surface-atmosphere interactions, convective cloud systems, atmospheric chemistry, precipitating weather systems, wildfire research, National Center for Atmospheric Research" name="KEYWORDS"/>
+<meta content="WRF-Chem Model Users page" name="DESCRIPTION"/>
+<meta content="1 days" name="revisit-after"/>
+<meta content="Global" name="distribution"/>
+<meta content="Microsoft FrontPage 3.1" name="GENERATOR"/>
+</head>
+<body>
+<h2></h2><p align="center">Tutorial Exercises for WRF-CHEM Version 4.0</p>
+</body>
+<p class="MsoNormal"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+<p class="bodytext"><strong>It is suggested that you keep open a copy of the <a href="Users_guide.pdf" onclick="window.open('drydepo.htm','qqq','resizable,scrollbars,toolbar')" target="qqq">WRF-Chem User's Guide</a> when doing the following exercises.  </strong></p>
+<p></p>
+<p> These tutorial exercises focus on the set-up and running of the WRF-Chem model. Each exercise will provide the user with previously constructed emissions data files so that the student can focus on learning the methodology instead of data gathering and processing.
+</p>
+<p></p>
+<p>Model questions can be posted here <a href="http://forum.mmm.ucar.edu/">WRF-Chem Support </a>.<br/>
+</p><hr/>
+<br/>
+<p class="bodytext"><mark>If you are not currently attending a WRF-Chem tutorial and are unfamiliar with compilling the code then consider following the 
+<a href="wrf_tutorial_exercises_v35/compiling_code.html">compiling WRF-Chem directions</a> before starting the tutorial exercises.</mark>
+</p>
+<br/>
+<hr/>
+<br/>
+<h3>Exercise 1: Building an initial field that contains dust erosion map and running WRF-Chem. </h3>
+<p class="bodytext"><strong>Purpose</strong>: To familiarize the user with the WRF WPS and the
+             methodology for preparing the initial fields for a simulation that
+             includes a dust emissions in a WRF-Chem simulation.  The domain 
+             is located over the Mediterrainian region.</p>
+<p class="bodytext"><a href="tutorialexercises/tutorialexercises001.html">Go to exercise 1</a> </p>
+<br/>
+<h3>Exercise 2: Using the the prep_chem tool to conduct volcanic ash simulation. </h3>
+<p class="bodytext"><strong>Purpose</strong>: To familiarize the user with the available global volcanic data set. This data set uses a program called "prep_chem_sources" to read the grid location and volcano information and map the eruption data to the user specified simulation domain. </p>
+<p class="bodytext"><a href="tutorialexercises/tutorialexercises002.html">Go to exercise 2</a> </p>
+<br/>
+<h3>Exercise 3: US Emission </h3>
+<p class="bodytext"><strong>Purpose</strong>: In this exercise you can generate anthropogenic emissions for WRF-Chem domain over CONUS in 60km resolution. </p>
+<p class="bodytext"><a href="tutorialexercises/tutorialexercises003.html">Go to exercise 3</a> </p>
+<br/>
+<h3>Exercise 4:  Using the Global emissions data (anthropogenic, sea salt, biomass burning) emissions for your domain (RACM-KPP-GOCART option). </h3>
+<p class="bodytext"><strong>Purpose</strong>: To familiarize the user with the available global emissions data set. This data set uses a program called "prep_chem_sources" to read the emissions data and map it to the user specified simulation domain. The program is capable of mapping anthropogenic and biogenic emissions, sea salt as well as biomass burning (wildfire) and volcanic ash emissions to the user domain.  </p>
+<p class="bodytext"><a href="tutorialexercises/tutorialexercises004.html">Go to exercise 4</a> </p>
+<br/>
+<!--
+<p class="bodytext"><a href="wrf_tutorial_exercises_v35/exercise_1.html">Go to exercise 1</a> </p>
+<h3>Exercise 2: WRF-Chem simulation using GOCART aerosols.</h3>
+
+<p class="bodytext"><strong>Purpose</strong>: Using the Global emissions data (dust, sea salt, biomass burning)
+             for a domain over the Mediterrainian region.
+             This exercise should be attempted after the user is 
+             familiar with the WRF WPS and dust erosion map production outlined in exercise_1.
+</p>
+
+</p> This exercise is intended to be completed by students 
+           that have knowledge about setting-up and running the
+           WRF numerical model.  This application of the WRF-Chem model should be attempted 
+           only by those user familiar with the set-up and 
+           running of the WPS as well as the WRF model.
+
+
+<p class="bodytext"><a href="wrf_tutorial_exercises_v35/exercise_2.html">Go to exercise 2</a> </p>
+
+
+<BR>
+<h3>Exercise 3: WRF-Chem simulation including biogenic emissions.
+</h3>
+
+<p class="bodytext"><strong>Purpose</strong>: To familiarize the user with the methodology
+           by which the MEGAN biogenic emissions are introduced into the WRF-Chem simulation.
+
+</p> This exercise is intended to be completed by students 
+           that have knowledge about setting-up and running the
+           WRF numerical model.  This application of the WRF-Chem model should be attempted 
+           only by those user familiar with the set-up and 
+           running of the WPS as well as the WRF model.
+
+
+<p class="bodytext"><a href="wrf_tutorial_exercises_v35/exercise_3.html">Go to exercise 3</a> </p>
+
+
+
+<BR>
+<h3>Exercise 4: Running WRF-Chem with aerosol direct and indirect forcing.
+</h3>
+
+<p class="bodytext"><strong>Purpose</strong>: To familiarize the user with the use of the WRF-Chem model
+          and all of the possible namelist settings.  One of the most
+          popular research settings when running the WRF-Chem model is
+          to examine the impact of the direct and indirect effect upon
+          the simulation results.  However, this is not a trivial
+          feature set to switch on.  Not every chemistry option has 
+          the feedback capability at this time.
+</p>
+<p>
+          The user will need to be very familiar with the WRF-Chem 
+          namelist options provided in the User's guide as well as the
+          quick_start and WRF-Chem FAQ web site.  There are several 
+          namelist options that need to be set so that both direct 
+          and indirect effects are functioning.  The simulation will 
+          run if an incorrect option is selected so the user needs 
+          to know exactly what is being used.
+</p>
+
+
+<p class="bodytext"><a href="wrf_tutorial_exercises_v35/exercise_4.html">Go to exercise 4</a> </p>
+
+
+<BR>
+<h3>Exercise 5: Cycling the chemistry when making a WRF-Chem forecast.
+</h3>
+
+<p class="bodytext"><strong>Purpose</strong>: To familiarize the user with the use of the WRF-Chem model
+          and the process of cycling the chemistry fields in a new forecast.  This process is 
+	  most useful when making daily forecasts and little to no chemical observations are available
+          to initialize the chemical state of the atmosphere.
+</p>
+
+<p class="bodytext"><a href="wrf_tutorial_exercises_v35/exercise_5.html">Go to exercise 5</a> </p>
+
+-->
+<p> </p>
+<br/>
+<hr/>
+<p style="margin:0in;margin-bottom:.0001pt"><span style="font-family:Arial"><a <p=""></a><a href="Tutorial.html"><font face="Arial">Return to the WRF-Chem Tutorial Web page</font></a></span></p>
+<br/>
+<p style="margin:0in;margin-bottom:.0001pt"><span style="font-family:Arial"><a href="Welcome.html">Return to WRF-Chem Main Page</a> </span></p>
+<p class="MsoNormal"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+<p align="center"><small><em>This page developed by Steven Peckham, maintained and modified by Ka Yee Wong<br/>
+Model questions can be posted here <a href="http://forum.mmm.ucar.edu/">WRF-Chem Support </a>.<br/>
+</em>Last modified: Oct 5, 2018 </small></p>
+</html>
