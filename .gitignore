@@ -5,3 +5,7 @@ large-downloads/
 *.tgz
 *.tar.bz2
 *.tar.xz
+
+# local artifacts
+*.zip
+*.bak
