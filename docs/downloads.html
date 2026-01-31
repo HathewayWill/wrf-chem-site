@@ -24,11 +24,13 @@
   <p>These archives are split into parts. Download all parts, then reconstruct with <code>cat</code>.</p>
 
   
+  <a id="prep-chem-sources"></a>
   <h3>prep_chem_sources_v1.5_24aug2015.tar.gz</h3>
   <ul>
     <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/prep_chem_sources_v1.5_24aug2015.tar.gz">prep_chem_sources_v1.5_24aug2015.tar.gz</a></li>
   </ul>
 
+<a id="all-file"></a>
 <h3>ALL_FILE.tar.gz</h3>
   <ul>
     <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/ALL_FILE.tar.gz.part-aa">ALL_FILE.tar.gz.part-aa</a></li>
@@ -38,6 +40,7 @@
   <pre><code>cat ALL_FILE.tar.gz.part-* &gt; ALL_FILE.tar.gz
 sha256sum -c ALL_FILE.tar.gz.parts.sha256</code></pre>
 
+  <a id="global-emissions"></a>
   <h3>global_emissions_v3_24aug2015.tar.gz</h3>
   <ul>
     <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/global_emissions_v3_24aug2015.tar.gz.part-aa">global_emissions_v3_24aug2015.tar.gz.part-aa</a></li>
@@ -47,6 +50,18 @@ sha256sum -c ALL_FILE.tar.gz.parts.sha256</code></pre>
   <pre><code>cat global_emissions_v3_24aug2015.tar.gz.part-* &gt; global_emissions_v3_24aug2015.tar.gz
 sha256sum -c global_emissions_v3_24aug2015.tar.gz.parts.sha256</code></pre>
 
-  <p><a href="./index.html">Back to home</a></p>
+
+  <a id="exercise3-data"></a>
+  <h2>Exercise 3 data</h2>
+  <p>
+    Some Exercise 3 datasets were historically provided via FTP links. Many browsers do not open FTP links directly,
+    so this site points you here instead.
+  </p>
+  <p>
+    If you still need the legacy FTP-only directories (Input_files, NEI11_processed, Run_emiss04, and emissions_data_2011),
+    use an FTP client or a command-line FTP workflow, or re-host those files as GitHub Release assets like the 2015 data above.
+  </p>
+
+    <p><a href="./index.html">Back to home</a></p>
 </body>
 </html>

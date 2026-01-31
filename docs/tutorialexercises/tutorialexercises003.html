@@ -10,7 +10,7 @@
 <p>
 </p><p># In this exercise you can generate anthropogenic emissions for WRF-Chem domain over CONUS in 60km resolution.</p>
 <p> ************************************************************************************************* </p>
-<p>Here is the emission code you need to run this exercise:  <a href="ftp://aftp.fsl.noaa.gov/divisions/taq/tutorialexercises/exe003/Run_emiss04/">Run_emiss04 </a>.
+<p>Here is the emission code you need to run this exercise:  <a href="../downloads.html#exercise3-data">Run_emiss04 </a>.
 </p><p># Check the Fortran programs
 </p><p>emiss_v04_CONUS60km.F
 
@@ -34,7 +34,7 @@
      </p><p>INTEGER    :: endhr 
 
 </p><p> ************************************************************************************************* </p>
-<p>Here is the emission data you need to run this exercise:  <a href="ftp://aftp.fsl.noaa.gov/divisions/taq/emissions_data_2011/">NEI_input </a>.
+<p>Here is the emission data you need to run this exercise:  <a href="../downloads.html#exercise3-data">NEI_input </a>.
 </p>
 <p># Extract the em11v1_file1.tar and em11v1_file2.tar and name the directory "NEI_input" and update the "NEI_input" path in emiss_v04_CONUS60km.F</p>
 <p>      DATA POINDIR /'/{your_path}/NEI_input/point/' / </p>
@@ -42,7 +42,7 @@
 <p># This program needs to be compiled using the following command
 </p><p># ifort -FR -convert big_endian emiss_v04_CONUS60km.F
 </p><p> ************************************************************************************************* </p>
-<p># Since running emiss_v04_CONUS60km.exe takes long time to complete, users don't want to generate binary files for the US60km domain. These files are already provided in: <a href="ftp://aftp.fsl.noaa.gov/divisions/taq/tutorialexercises/exe003/NEI11_processed/">NEI11_processed</a>.
+<p># Since running emiss_v04_CONUS60km.exe takes long time to complete, users don't want to generate binary files for the US60km domain. These files are already provided in: <a href="../downloads.html#exercise3-data">NEI11_processed</a>.
 </p><p> ************************************************************************************************* </p>
 <p># The wrfem* files are binary, we need to convert them to netcdf format so WRF-Chem can read them 
 
@@ -52,7 +52,7 @@
 </p><p>ln -sf ${your_path}/NEI11_processed/wrfem_00to12Z wrfem_00to12z_d01
 </p><p>ln -sf ${your_path}/NEI11_processed/wrfem_12to24Z wrfem_12to24z_d01
 
-</p><p>Here is the input data and namelist.input file:  <a href="ftp://aftp.fsl.noaa.gov/divisions/taq/tutorialexercises/exe003/Input_files/">input data and namelist </a>.
+</p><p>Here is the input data and namelist.input file:  <a href="../downloads.html#exercise3-data">input data and namelist </a>.
 </p><p>ln -sf ${your_path}/Input_files/wrfinput_d01_00Z wrfinput_d01
 </p><p># Modify the namelist.input file
 </p><p># set the start_hour and end_hour to 00 and 11 respectively.
