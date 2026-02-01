@@ -1,172 +1,21 @@
-<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<script src="loop/jquery-1.3.2.jquery.min.js" type="text/javascript"></script>
-<script src="loop/jqueryui-1.7.2.jquery-ui.min.js" type="text/javascript"></script>
-<script src="loop/jquery-ui.flipbook.js" type="text/javascript"></script>
-<link href="loop/jquery-ui.css" rel="stylesheet" type="text/css"/>
-<link href="loop/jquery-ui.flipbook4.css" rel="stylesheet" type="text/css"/>
-<!-- FlipBook -->
-<script type="text/javascript">
-	var imageLoop = new Array();
-	var todaydate = "<!--#config timefmt='%Y%m%d' --><!--#echo var='DATE_LOCAL' -->";
-	
-	var todaytime = "<!--#config timefmt='%I' --><!--#echo var='DATE_LOCAL' -->";
-	if (todaytime > 12){ todaydate = todaydate -1; }
-	for (var i=0; i<=37; i++) {
-		if (i <=9) {i = "0" + i;}
-		imageLoop.push("hrrrsmokeimages/trc1_sfc_f" + i + ".png");
-	}
-
-$(function() {
-    var $flipbook = $('#flipbook');
-$flipbook.flipbook({
-  images: imageLoop
-});
-});
-</script>
-<title>WRF-Chem</title>
-<meta content="none, default" name="Microsoft Border"/></head>
-<meta content="meteorology, mesoscale, microscale, weather modeling, forecasting weather, weather prediction, predictability, cloud systems, boundary layers, surface-atmosphere interactions, convective cloud systems, atmospheric chemistry, precipitating weather systems, wildfire research, wildfire model, WRF chemistry, air quality forecasting, air quality forecast, air quality forecasting model, pollution forecast, pollution model, atmospheric pollution model, atmospheric dispersion, dispersion model, atmospheric climate change, climate change" name="KEYWORDS"/>
-<body bgcolor="#FFFFFF" vlink="#0000FF">
-<div style="margin:12px auto; max-width:1000px; padding:12px 14px; border:1px solid #cfe8ff; background:#f4fbff; color:#0b2a3a; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; border-radius:10px;">
-  <strong>New:</strong> Open the modern documentation portal:
-  <a href="./portal/" style="color:#005ea6; font-weight:700; text-decoration:underline;">/portal/</a>.
-  Large files are on the
-  <a href="./downloads.html" style="color:#005ea6; font-weight:700; text-decoration:underline;">Downloads</a> page.
-</div>
-
-<p><strong>Downloads:</strong> <a href="downloads.html">Large files and tutorial bundles</a></p>
-
-<br/>
-<h1 align="center"><font face="Helvetica">Weather Research and Forecasting model coupled to Chemistry (WRF-Chem)<br/>
-<br/>
-<!--
-		imageLoop.push("https://rapidrefresh.noaa.gov/HRRRsmoke/for_web/hrrr_smoke/" + todaydate + "00/full/trc1_sfc_f" + i + ".png");
-		imageLoop.push("https://rapidrefresh.noaa.gov/HRRRsmoke/for_web/hrrr_smoke/2016121312/full/trc1_sfc_f" + i + ".png");
-<p align="center"><font face="Helvetica" color="#FF5733"><br>
-<p align="center"><font face="Helvetica" color="#FF5733">(site under construction)<br>
--->
-</font><img <br="" height="9" src="line.gif" width="709"/>
-</h1><table border="1" width="100%">
-<tr>
-<td align="center" rowspan="3" width="33%"> 
-<!--
-     <p> <font face="Helvetica" color="#0000FF"> Smoke Forecast Using WRF-Chem
-     <br/>
-     <br/>
-     <br/>
-     <br/>
-     <br/>
-     <div id="flipbook"></div>
-     <div class="clear"></div>
-     <br/>
-     <br/>
-     <br/>
-     <p> <a href="https://rapidrefresh.noaa.gov/hrrr/HRRRsmoke/">https://rapidrefresh.noaa.gov/hrrr/HRRRsmoke/</a>
--->
-<p> <font color="#0000FF" face="Helvetica"> Smoke forecast using HRRR-Smoke
-    <video controls="" height="500" width="600">
-<source src="HRRREXP.mp4" type="video/mp4">
-</source></video>
-<p> <a href="https://rapidrefresh.noaa.gov/RAPchem/">https://rapidrefresh.noaa.gov/hrrr/HRRRsmoke/</a>
-</p></font></p></td>
-</tr>
-<tr>
-<td align="center" rowspan="3" width="33%"> <img alt="wrfchem_logo.png " height="400" src="wrfchem_logo.png" width="400"/></td>
-</tr>
-<tr>
-<td align="center" rowspan="3" width="33%"> 
-     <p> <font color="#0000FF" face="Helvetica"> Surface PM2.5 Aerosol Forecast Using RAP-Chem 
-    <img alt="PM25_loop_RAP-Chem_COVID_10-17-2020.gif" height="500" src="PM25_loop_RAP-Chem_COVID_10-17-2020.gif" width="600"/>
-<p> <a href="https://rapidrefresh.noaa.gov/RAPchem/">https://rapidrefresh.noaa.gov/RAPchem/</a>
-</p></font></p></td>
-</tr>
-<!--
-    <td width="33%" align="center" rowspan="3">&nbsp;
-     <p> <font face="Helvetica" color="#0000FF"> Ozone Forecast Using WRF-Chem
-<a href="https://rapidrefresh.noaa.gov/RAPchem/jsloopLocalDiskDateDomainZipTZA.cgi?dsKeys=rap-chem:&runTime=mostrecent&plotName=ozone_sfc&fcstInc=180&numFcsts=17&model=rr&ptitle=RAP%20Chem%20Model%20Fields%20-%20Experimental&maxFcstLen=48&fcstStrLen=-1&resizePlot=1&domain=d_01"> <img src="chem-o3.png" alt="chem-o3.png" WIDTH="400" HEIGHT="400"></a>
-     <p> <a href="https://rapidrefresh.noaa.gov/RAPchem/">https://rapidrefresh.noaa.gov/RAPchem/</a>
-    </td>
-  </tr>
--->
-<!--
-    <td width="50%" align="center" rowspan="3">&nbsp;<img src="wrfchem_logo.png" alt="wrfchem_logo.png " WIDTH="400" HEIGHT="400"></td>
-  <tr></tr>
-    <td width="25%" align="center" rowspan="2">&nbsp;<a href="https://rapidrefresh.noaa.gov/hrrr/HRRRsmoke/jsloopLocalDiskDateDomainZipTZA.cgi?dsKeys=hrrr_smoke:&runTime=2016101312&plotName=trc1_sfc&fcstInc=60&numFcsts=37&model=hrrr&ptitle=HRRR%20Model%20Fields%20-%20Experimental&maxFcstLen=36&fcstStrLen=-1&resizePlot=1&domain=full"> <img src="chem-smoke.png" alt="chem-smoke.png" WIDTH="400" HEIGHT="400"></a></td>
-    <td width="25%" align="center" rowspan="2">&nbsp;<font face="Helvetica"> Click image for HRRR-Smoke experimental near surface smoke forecast
-  <tr></tr>
--->
-</table>
-<!--
-<p align="center"><font face="Arial" color="#0000FF"><big><big><big><big>Mission</big></big></big></big></font></p>
-
-<p><font face="Arial,Helvetica" size="+2">The mission of the atmospheric chemistry working group is
-to guide the development of the capability to simulate chemistry and aerosols &#151;
-online as well as offline &#151; within the WRF model.&nbsp; The resulting WRF-Chem model
-will have the option to simulate the coupling between dynamics, radiation and chemistry.
-Uses include forecasting chemical-weather, testing air pollution abatement strategies,
-planning and forecasting for field campaigns, analyzing measurements from field campaigns
-and the assimilation of satellite and in-situ chemical measurements.</font> </p>
--->
-<br/>
-<p> </p>
-<p align="center"><font color="#408080" face="Arial"><a href="support-team.htm"><big><big>WRF-Chem Development and Support Team</big></big></a></font></p>
-<br/>
-<p> </p>
-<p align="center"><font color="#408080" face="Arial"><a href="external-support.htm"><big><big>Major External WRF-Chem Developers and Collaborators</big></big></a></font></p>
-<br/>
-<p> </p>
-<p align="center"><font color="#408080" face="Arial"><a href="tutorialexercises.htm"><big><big>Tutorial Exercises</big></big></a></font></p>
-<br/>
-<p> </p>
-<p align="center"><font color="#408080" face="Arial"><a href="forum.htm"><big><big>WRF-Chem Support Forum</big></big></a></font></p>
-<br/>
-<p> </p>
-<!--
-<p align="center"><font face="Arial" color="#408080"><a href="forum.htm"><big><big><big><mark> *** New WRF-Chem Support Forum *** </mark></big></big></big></font></p>
-<br>
-<p> </p>
-
-<p align="center"><font face="Arial" color="#408080"><a href="https://cires.colorado.edu/jobs/cires-noaa-gsd-atmospheric-chemistry-and-aerosol-modeler"><big><big><mark> *** Postdoctoral position at CU Boulder CIRES and NOAA/ESRL *** </mark></big></big></font></p>
-<br>
-<p> </p>
-//-->
-<p align="center"><font color="#408080" face="Arial"><a href="user-support.htm"><big><big>User Support</big></big></a></font></p>
-<!--
-<p align="center"><font face="Arial" color="#408080"><a href="tutorialexercises.htm"><big><big><mark> *** </mark>Tutorial Exercises<mark> *** </mark></big></big></font></p>
-
-<p><font face="Arial"><a href="known-prob.htm">Known issues</a> with the current WRF-Chem model.</a></font> 
-
-<p><font face="Arial"><a href="2007_wrf_wksp.htm">2007 WRF workshop</a> information - Meeting minutes and mini-tutorial presentations </font></p>
-<p><font face="Arial">2006 WRF workshop working group 11 <a href="2006minutes.htm">meeting minutes</a></font></p>
-
-<p><font face="Arial"><a href="announce.htm"> WRF-Chem related announcements.</a></font> <BOLD> Updated for <B>job announcements</B> 15 July 2011 </BOLD></p>
-//-->
-<br/>
-<p align="center"><font color="#408080" face="Arial"><a href="announce.htm"><big><big>Announcements</big></big></a></font></p>
-<br/>
-<p> </p>
-<p align="center"><font color="#408080" face="Arial"><a href="Real_time_forecasts.htm"><big><big>Operational and Experimental Air Quality Forecasts Using WRF-Chem 
-</big></big></a></font></p>
-<br/>
-<p> </p>
-<p align="center"><font color="#408080" face="Arial"><a href="model_info.htm"><big><big>User docs</big></big></a></font></p>
-<br/>
-<p> </p>
-<p align="center"><font color="#408080" face="Arial"><a href="Tutorial.html"><big><big>More Online Tutorials</big></big></a></font></p>
-<br/>
-<p> </p>
-<p align="center"><font color="#408080" face="Arial"><a href="code_policy.html"><big><big>Policy on adding new code to WRF-Chem</big></big></a></font></p>
-<p> <font face="Arial"></font> </p>
-<br/>
-<p> </p>
-<hr/>
-<p align="center"><small><a href="Disclaimer.html">Disclaimer</a></small><br/>
-</p><p> <font face="Arial"></font> </p>
-<p align="center"><small><em>This page developed and maintained by Ka Yee Wong<br/>
-Model questions can be posted here <a href="https://forum.mmm.ucar.edu/">WRF-Chem Support </a>.<br/>
-</em>Last modified: Jan 25,2021 </small></p>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WRF-Chem</title>
+  <meta http-equiv="refresh" content="0; url=./portal/" />
+  <link rel="canonical" href="./portal/" />
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:40px;line-height:1.4}
+    a{color:#005ea6}
+  </style>
+</head>
+<body>
+  <p>Redirecting to the <a href="./portal/">WRF-Chem Documentation Portal</a>…</p>
+  <p>If you prefer the archived mirror, visit <a href="./classic.html">classic.html</a>.</p>
+  <script>
+    window.location.replace("./portal/");
+  </script>
 </body>
-<br/>
 </html>
