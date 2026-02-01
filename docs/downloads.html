@@ -4,74 +4,125 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Downloads | WRF-Chem</title>
+  <link rel="stylesheet" href="portal/assets/styles.css" />
+  <style>
+    /* small page-specific tweaks */
+    .section { margin-top: 18px; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    pre { overflow:auto; }
+  </style>
 </head>
 <body>
-  <h1>Downloads</h1>
-
-  <p>Large files are hosted outside GitHub Pages. Use the links below.</p>
-
-  <h2>Browse local tutorial exercise files</h2>
-  <ul>
-    <li><a href="./tutorialexercises/exe001/index.html">Exercise 1 files (exe001)</a></li>
-    <li><a href="./tutorialexercises/exe002/index.html">Exercise 2 files (exe002)</a></li>
-    <li><a href="./tutorialexercises/exe003/index.html">Exercise 3 files (exe003)</a></li>
-    <li><a href="./tutorialexercises/exe004/index.html">Exercise 4 files (exe004)</a></li>
-  </ul>
-
-
-  <h2>WRF-Chem Tutorial 2018</h2>
-  <ul>
-    <li>
-      <a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/tutorials-2018/wrf_tutorial_2018.zip">
-        wrf_tutorial_2018.zip
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="./index.html">
+        <img src="./wrfchem_logo.png" alt="WRF-Chem logo" />
+        <div class="title">WRF-Chem Downloads</div>
       </a>
-    </li>
-  </ul>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <a class="link" href="./portal/">Portal</a>
+        <a class="link" href="./index.html">Classic home</a>
+        <a class="pill" href="./tutorialexercises.htm">Exercises</a>
+      </div>
+    </div>
 
-  
-  <h2>WRF-Chem Tutorial Data (2015)</h2>
-  <p>These archives are split into parts. Download all parts, then reconstruct with <code>cat</code>.</p>
+    <div class="card section">
+      <h1 class="h1" style="font-size:30px">Downloads</h1>
+      <p class="sub">
+        Large files are hosted outside GitHub Pages via GitHub Releases. Local exercise files are browsable below.
+      </p>
 
-  
-  <a id="prep-chem-sources"></a>
-  <h3>prep_chem_sources_v1.5_24aug2015.tar.gz</h3>
-  <ul>
-    <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/prep_chem_sources_v1.5_24aug2015.tar.gz">prep_chem_sources_v1.5_24aug2015.tar.gz</a></li>
-  </ul>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="pill" href="#tutorial-2018">Tutorial 2018</a>
+        <a class="pill" href="#data-2015">Data (2015)</a>
+        <a class="pill" href="#exercise-files">Exercise files</a>
+        <a class="pill" href="#exercise3-data">Exercise 3 note</a>
+      </div>
+    </div>
 
-<a id="all-file"></a>
-<h3>ALL_FILE.tar.gz</h3>
-  <ul>
-    <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/ALL_FILE.tar.gz.part-aa">ALL_FILE.tar.gz.part-aa</a></li>
-    <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/ALL_FILE.tar.gz.part-ab">ALL_FILE.tar.gz.part-ab</a></li>
-    <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/ALL_FILE.tar.gz.parts.sha256">ALL_FILE.tar.gz.parts.sha256</a></li>
-  </ul>
-  <pre><code>cat ALL_FILE.tar.gz.part-* &gt; ALL_FILE.tar.gz
+    <div class="grid section">
+      <a class="tile" href="https://github.com/HathewayWill/wrf-chem-site/releases/download/tutorials-2018/wrf_tutorial_2018.zip" id="tutorial-2018">
+        <h3>WRF-Chem Tutorial 2018</h3>
+        <p>Download as a single ZIP (Release asset).</p>
+      </a>
+
+      <a class="tile" href="#data-2015">
+        <h3>WRF-Chem Tutorial Data (2015)</h3>
+        <p>Split archives, plus checksums and rebuild commands.</p>
+      </a>
+
+      <a class="tile" href="#exercise-files" id="exercise-files">
+        <h3>Browse exercise folders</h3>
+        <p>Clickable file listings for exe001–exe004.</p>
+      </a>
+    </div>
+
+    <div class="card section" id="data-2015">
+      <h2 style="margin:0 0 8px">WRF-Chem Tutorial Data (2015)</h2>
+      <p class="sub" style="margin-bottom:10px">
+        These archives are split into parts. Download all parts, then reconstruct with <span class="mono">cat</span>, and verify with SHA-256.
+      </p>
+
+      <a id="prep-chem-sources"></a>
+      <h3 style="margin:14px 0 8px">prep_chem_sources_v1.5_24aug2015.tar.gz</h3>
+      <ul>
+        <li>
+          <a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/prep_chem_sources_v1.5_24aug2015.tar.gz">
+            prep_chem_sources_v1.5_24aug2015.tar.gz
+          </a>
+        </li>
+      </ul>
+
+      <a id="all-file"></a>
+      <h3 style="margin:14px 0 8px">ALL_FILE.tar.gz (split)</h3>
+      <ul>
+        <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/ALL_FILE.tar.gz.part-aa">ALL_FILE.tar.gz.part-aa</a></li>
+        <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/ALL_FILE.tar.gz.part-ab">ALL_FILE.tar.gz.part-ab</a></li>
+        <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/ALL_FILE.tar.gz.parts.sha256">ALL_FILE.tar.gz.parts.sha256</a></li>
+      </ul>
+      <pre><code>cat ALL_FILE.tar.gz.part-* > ALL_FILE.tar.gz
 sha256sum -c ALL_FILE.tar.gz.parts.sha256</code></pre>
 
-  <a id="global-emissions"></a>
-  <h3>global_emissions_v3_24aug2015.tar.gz</h3>
-  <ul>
-    <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/global_emissions_v3_24aug2015.tar.gz.part-aa">global_emissions_v3_24aug2015.tar.gz.part-aa</a></li>
-    <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/global_emissions_v3_24aug2015.tar.gz.part-ab">global_emissions_v3_24aug2015.tar.gz.part-ab</a></li>
-    <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/global_emissions_v3_24aug2015.tar.gz.parts.sha256">global_emissions_v3_24aug2015.tar.gz.parts.sha256</a></li>
-  </ul>
-  <pre><code>cat global_emissions_v3_24aug2015.tar.gz.part-* &gt; global_emissions_v3_24aug2015.tar.gz
+      <a id="global-emissions"></a>
+      <h3 style="margin:14px 0 8px">global_emissions_v3_24aug2015.tar.gz (split)</h3>
+      <ul>
+        <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/global_emissions_v3_24aug2015.tar.gz.part-aa">global_emissions_v3_24aug2015.tar.gz.part-aa</a></li>
+        <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/global_emissions_v3_24aug2015.tar.gz.part-ab">global_emissions_v3_24aug2015.tar.gz.part-ab</a></li>
+        <li><a href="https://github.com/HathewayWill/wrf-chem-site/releases/download/data-2015/global_emissions_v3_24aug2015.tar.gz.parts.sha256">global_emissions_v3_24aug2015.tar.gz.parts.sha256</a></li>
+      </ul>
+      <pre><code>cat global_emissions_v3_24aug2015.tar.gz.part-* > global_emissions_v3_24aug2015.tar.gz
 sha256sum -c global_emissions_v3_24aug2015.tar.gz.parts.sha256</code></pre>
+    </div>
 
+    <div class="card section" id="exercise-files">
+      <h2 style="margin:0 0 8px">Browse local tutorial exercise files</h2>
+      <p class="sub" style="margin-bottom:10px">
+        GitHub Pages does not list directories automatically, so these pages provide a browsable index for each exercise folder.
+      </p>
+      <ul>
+        <li><a href="./tutorialexercises/exe001/">Exercise 1 files (exe001)</a></li>
+        <li><a href="./tutorialexercises/exe002/">Exercise 2 files (exe002)</a></li>
+        <li><a href="./tutorialexercises/exe003/">Exercise 3 files (exe003)</a></li>
+        <li><a href="./tutorialexercises/exe004/">Exercise 4 files (exe004)</a></li>
+      </ul>
+    </div>
 
-  <a id="exercise3-data"></a>
-  <p><a href="./tutorialexercises/exe003/index.html">Browse Exercise 3 local files (exe003)</a></p>
-  <h2>Exercise 3 data</h2>
-  <p>
-    Some Exercise 3 datasets were historically provided via FTP links. Many browsers do not open FTP links directly,
-    so this site points you here instead.
-  </p>
-  <p>
-    If you still need the legacy FTP-only directories (Input_files, NEI11_processed, Run_emiss04, and emissions_data_2011),
-    use an FTP client or a command-line FTP workflow, or re-host those files as GitHub Release assets like the 2015 data above.
-  </p>
+    <div class="card section">
+      <a id="exercise3-data"></a>
+      <h2 style="margin:0 0 8px">Exercise 3 data note</h2>
+      <p class="sub" style="margin-bottom:10px">
+        Some Exercise 3 datasets were historically provided via FTP links. Many browsers do not open FTP links directly, so this site points you here instead.
+      </p>
+      <p class="sub" style="margin-bottom:10px">
+        If you still need the legacy FTP-only directories (Input_files, NEI11_processed, Run_emiss04, and emissions_data_2011),
+        use an FTP client or a command-line FTP workflow, or re-host those files as GitHub Release assets like the 2015 data above.
+      </p>
+      <p><a class="pill" href="./tutorialexercises/exe003/">Browse Exercise 3 local files (exe003)</a></p>
+    </div>
 
-    <p><a href="./index.html">Back to home</a></p>
+    <div class="footer">
+      <a class="link" href="./index.html">Back to home</a>
+    </div>
+  </div>
 </body>
 </html>
