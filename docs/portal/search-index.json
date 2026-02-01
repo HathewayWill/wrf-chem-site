@@ -1,212 +1,212 @@
 [
   {
     "title": "Disclaimer",
-    "url": "../Disclaimer.html",
-    "summary": "Disclaimer The information on government servers is in the public domain, unless specifically annotated otherwise, and may be used freely by the public. Before using information obtained from this server special attention should be given to"
+    "path": "Disclaimer.html",
+    "summary": "Disclaimer The information on government servers is in the public domain, unless specifically annotated otherwise, and may be used freely by the public. Before using information obtained from this server special attentio"
   },
   {
     "title": "WRF-CHEM: ERDC",
-    "url": "../ERDC.html",
-    "summary": "WRF-Chem: Contributors from U.S. Army Engineer Research and Development Center (ERDC) Steven Peckham Sandra Jones Questions should be directed to WRF-Chem Support . Back to Main WRF-Chem Model Webpage"
+    "path": "ERDC.html",
+    "summary": "WRF-Chem: Contributors from U.S. Army Engineer Research and Development Center (ERDC) Steven Peckham Sandra Jones"
   },
   {
     "title": "WRF-Chem: Frequently Asked Questions",
-    "url": "../FAQ.htm",
-    "summary": "WRF-Chem: Frequently Asked Questions Q: How do I obtain a copy of the WRF chemistry code? A: You can download the WRF-Chem source code from the WRF site: http://www.wrf-model.org/users/users.php . The chemistry section of the WRF-Chem model"
+    "path": "FAQ.htm",
+    "summary": "WRF-Chem: Frequently Asked Questions WRF-Chem: Frequently Asked Questions Q: How do I obtain a copy of the WRF chemistry code? A: You can download the WRF-Chem source code from the WRF site: http://www.wrf-model.org/user"
   },
   {
     "title": "Fix/compile.html",
-    "url": "../Fix/compile.html",
-    "summary": "#!/bin/csh -f setenv START_OF_COMPILE \"`date`\" cont1: if ( ! -e configure.wrf ) then echo \"\" echo \"You must run the 'configure' script before running the 'compile' script!\" echo \"Exiting...\" echo \"\" exit 1 endif #---------------------------"
+    "path": "Fix/compile.html",
+    "summary": "#!/bin/csh -f setenv START_OF_COMPILE \"`date`\" cont1: if ( ! -e configure.wrf ) then echo \"\" echo \"You must run the 'configure' script before running the 'compile' script!\" echo \"Exiting...\" echo \"\" exit 1 endif #-------"
   },
   {
     "title": "WRF/CHEM: NOAA",
-    "url": "../NOAA.html",
-    "summary": "WRF-Chem: Contributors from NOAA Stuart McKeen NOAA/ESRL/CSD and CU Boulder CIRES Questions should be directed to WRF-Chem Support . Back to Main WRF-Chem Model Webpage"
+    "path": "NOAA.html",
+    "summary": "WRF-Chem: Contributors from NOAA Stuart McKeen NOAA/ESRL/CSD and CU Boulder CIRES"
   },
   {
     "title": "Operational and Experimental Air Quality Forecasts Using WRF-Chem",
-    "url": "../Real_time_forecasts.htm",
-    "summary": "Operational and Experimental Air Quality Forecasts Using WRF-Chem The WRF-Chem model is used around the globe for operational air quality forecasts. Some of the locations include: Operational Center Forecasts NOAA/GSL smoke Forecast for Nor"
+    "path": "Real_time_forecasts.htm",
+    "summary": "Operational and Experimental Air Quality Forecasts Using WRF-Chem Operational and Experimental Air Quality Forecasts Using WRF-Chem The WRF-Chem model is used around the globe for operational air quality forecasts. Some "
   },
   {
     "title": "References | WRF-Chem",
-    "url": "../References/WRF-Chem.references.htm",
-    "summary": "WRF-Chem Portal Downloads Classic PRIMARY REFERENCES Grell GA, SE Peckham, R Schmitz, and SA McKeen, G Frost, WC Skamarock, and B Eder. 2005. Fully coupled 'online' chemistry in the WRF model. Atmos. Environ., 39:6957-6976. Fast JD, WI Gust"
+    "path": "References/WRF-Chem.references.htm",
+    "summary": "References | WRF-Chem WRF-Chem Portal Downloads Classic PRIMARY REFERENCES Grell GA, SE Peckham, R Schmitz, and SA McKeen, G Frost, WC Skamarock, and B Eder. 2005. Fully coupled 'online' chemistry in the WRF model. Atmos"
   },
   {
     "title": "WRF-Chem: Tutorials",
-    "url": "../Tutorial.html",
-    "summary": "Online Tutorial Exercises Tutorial Exercises For Learning to Run WRF-Chem versions 4.0 Presentations From the Previous WRF-Chem Tutorials WRF-Chem 2018 Tutorial Presentations WRF-Chem 2017 Tutorial Presentations WRF-Chem 2015 Tutorial Prese"
+    "path": "Tutorial.html",
+    "summary": "WRF-Chem: Tutorials Online Tutorial Exercises Tutorial Exercises For Learning to Run WRF-Chem versions 4.0 Presentations From the Previous WRF-Chem Tutorials WRF-Chem 2018 Tutorial Presentations WRF-Chem 2017 Tutorial Pr"
   },
   {
     "title": "WRF-Chem",
-    "url": "../Welcome.html",
-    "summary": "Redirecting to the WRF-Chem Documentation Portal \u2026 If you prefer the archived mirror, visit classic.html ."
+    "path": "Welcome.html",
+    "summary": "WRF-Chem Redirecting to the WRF-Chem Documentation Portal \u2026 If you prefer the archived mirror, visit classic.html ."
   },
   {
     "title": "WRF-Chem: Announcements",
-    "url": "../announce.htm",
-    "summary": "WRF-Chem: Announcements Tutorials To be announced Conferences To be announced Latest WRF-Chem Releases (GitHub) WRF-Chem Version 4.4.1 (Bug-fix Release) WRF-Chem Version 4.4 Previous WRF-Chem Releases WRF-Chem Version 4.0 or earlier version"
+    "path": "announce.htm",
+    "summary": "WRF-Chem: Announcements Tutorials To be announced Conferences To be announced Latest WRF-Chem Releases (GitHub) WRF-Chem Version 4.4.1 (Bug-fix Release) WRF-Chem Version 4.4 Previous WRF-Chem Releases WRF-Chem Version 4."
   },
   {
     "title": "ANTHROPOGENIC EMISSIONS",
-    "url": "../anthropogenic.htm",
-    "summary": "ANTHROPOGENIC EMISSIONS Development of anthropogenic emissions for use with WRF/Chem At this time there is no single tool that will construct an anthropogenic emissions data set for any domain that the user selects. This places the requirem"
+    "path": "anthropogenic.htm",
+    "summary": "ANTHROPOGENIC EMISSIONS ANTHROPOGENIC EMISSIONS Development of anthropogenic emissions for use with WRF/Chem At this time there is no single tool that will construct an anthropogenic emissions data set for any domain tha"
   },
   {
     "title": "WRF-Chem",
-    "url": "../classic.html",
-    "summary": "New: Open the modern documentation portal: /portal/ . Large files are on the Downloads page. Downloads: Large files and tutorial bundles Weather Research and Forecasting model coupled to Chemistry (WRF-Chem) Questions should be directed to "
+    "path": "classic.html",
+    "summary": "WRF-Chem 116 captures 06 Nov 2016 - 30 Sep 2025 Mar APR May 18 2022 2023 2024 success fail <span class=\"iconochive-q"
   },
   {
     "title": "Code Policy",
-    "url": "../code_policy.html",
-    "summary": "Policy on adding new code to WRF-Chem Click here for the workflow for WRF Code Modification If you plan to add new code, please contact to our team here so we can assist you and coordinate the pull request. Questions should be directed to W"
+    "path": "code_policy.html",
+    "summary": "Policy on adding new code to WRF-Chem Click here for the workflow for WRF Code Modification If you plan to add new code, please contact to our team here so we can assist you and coordinate the pull request."
   },
   {
     "title": "Downloads | WRF-Chem",
-    "url": "../downloads.html",
-    "summary": "WRF-Chem Downloads Portal Classic home Exercises Downloads Large files are hosted outside GitHub Pages via GitHub Releases. Local exercise files are browsable below. Tutorial 2018 Data (2015) Exercise files Exercise 3 note WRF-Chem Tutorial"
+    "path": "downloads.html",
+    "summary": "Downloads"
   },
   {
     "title": "forum",
-    "url": "../email_list.htm",
-    "summary": "WRF-Chem email list A new email group for the WRF-Chem user community: https://list.woc.noaa.gov/cgi-bin/mailman/listinfo/wrf-chem-discussions The objectives of this email list (WRF-Chem discussions) are to reach out to the large worldwide "
+    "path": "email_list.htm",
+    "summary": "WRF-Chem email list A new email group for the WRF-Chem user community: https://list.woc.noaa.gov/cgi-bin/mailman/listinfo/wrf-chem-discussions The objectives of this email list (WRF-Chem discussions) are to reach out to "
   },
   {
     "title": "External WRF-Chem Development and Support Team",
-    "url": "../external-support.htm",
-    "summary": "External WRF-Chem Development and Support Team NOAA/CSD NCAR PNNL NASA ERDC Universities Questions should be directed to WRF-Chem Support . Back to Main WRF-Chem Model Webpage"
+    "path": "external-support.htm",
+    "summary": "External WRF-Chem Development and Support Team NOAA/CSD NCAR PNNL NASA ERDC Universities"
   },
   {
     "title": "Forum | WRF-Chem",
-    "url": "../forum.htm",
-    "summary": "WRF-Chem Portal Downloads Classic WRF-Chem Forum A New Forum for the WRF-Chem User Community: https://forum.mmm.ucar.edu/ Interested users can submit their questions to the forum via the provided link. No account is needed to browse the for"
+    "path": "forum.htm",
+    "summary": "WRF-Chem forum"
   },
   {
     "title": "WRF-Chem",
-    "url": "../index.html",
-    "summary": "Redirecting to the WRF-Chem Documentation Portal \u2026 If you prefer the archived mirror, visit classic.html ."
+    "path": "index.html",
+    "summary": "WRF-Chem Redirecting to the WRF-Chem Documentation Portal \u2026 If you prefer the archived mirror, visit classic.html ."
   },
   {
     "title": "Known Problems and Fixes For WRF/Chem Version 3.8.1",
-    "url": "../known-prob.htm",
-    "summary": "WRF-CHEM Version 4.0: Known Problems (and Their Fixes) Problem : Unable to compile convert_emiss.exe by running \"./compile emi_conv\". Solution : Please replace the compile file which is located at the top directory. Download this file ==&gt"
+    "path": "known-prob.htm",
+    "summary": "Known Problems and Fixes For WRF/Chem Version 3.8.1 WRF-CHEM Version 4.0: Known Problems (and Their Fixes) Problem : Unable to compile convert_emiss.exe by running \"./compile emi_conv\". Solution : Please replace the comp"
   },
   {
     "title": "User Docs",
-    "url": "../model_info.htm",
-    "summary": "User Docs WRF-Chem version 4.4 Users Guide Updated Apr 2022 WRF-Chem version 3.9.1.1 Emissions Guide Updated Feb 2018 The WRF Model main webpage and the Users Resources page WRF-Chem References and related Publications WRF workshop presenta"
+    "path": "model_info.htm",
+    "summary": "User Docs WRF-Chem version 4.4 Users Guide Updated Apr 2022 WRF-Chem version 3.9.1.1 Emissions Guide Updated Feb 2018 The WRF Model main webpage and the Users Resources page WRF-Chem References and related Publications W"
   },
   {
     "title": "Development and Support Team",
-    "url": "../support-team.htm",
-    "summary": "WRF-Chem Development and Support Team The WRF-Chem code development and maintenance is conducted by our team at the NOAA/ESRL/GSL in strong collaboration with other research groups at NOAA/ESRL, NCAR, PNNL, NASA and ERDC and many other inst"
+    "path": "support-team.htm",
+    "summary": "Development and Support Team WRF-Chem Development and Support Team The WRF-Chem code development and maintenance is conducted by our team at the NOAA/ESRL/GSL in strong collaboration with other research groups at NOAA/ES"
   },
   {
     "title": "WRF/Chem 2010 Tutorial Presentations",
-    "url": "../tutorial2011.htm",
-    "summary": "WRF-CHEM 2011 Tutorial Presentations Power Point Slides Presented at the August 2011 WRF-Chem Tutorial Overview of WRF/Chem Introduction to WRF-Chem Introduction to Photolysis MEGAN description and use with WRF-Chem WRF/Chem chemical mechan"
+    "path": "tutorial2011.htm",
+    "summary": "WRF/Chem 2010 Tutorial Presentations WRF-CHEM 2011 Tutorial Presentations Power Point Slides Presented at the August 2011 WRF-Chem Tutorial Overview of WRF/Chem Introduction to WRF-Chem Introduction to Photolysis MEGAN d"
   },
   {
     "title": "WRF-Chem 2012 Tutorial Presentations",
-    "url": "../tutorial2012.htm",
-    "summary": "WRF-CHEM 2012 Tutorial Presentations Power Point Slides Presented at the July 2012 WRF-Chem Tutorial Overview of WRF-Chem Introduction to Photolysis Biogenic and Fire emissions with WRF-Chem WRF-Chem chemical mechanisms and KPP Aerosols in "
+    "path": "tutorial2012.htm",
+    "summary": "WRF-Chem 2012 Tutorial Presentations WRF-CHEM 2012 Tutorial Presentations Power Point Slides Presented at the July 2012 WRF-Chem Tutorial Overview of WRF-Chem Introduction to Photolysis Biogenic and Fire emissions with W"
   },
   {
     "title": "WRF-Chem 2013 Tutorial Presentations",
-    "url": "../tutorial2013.htm",
-    "summary": "WRF-CHEM 2013 Tutorial Presentations Power Point Slides Presented at the July 2013 WRF-Chem Tutorial Overview of WRF-Chem Introduction to Photolysis Biogenic and Fire emissions with WRF-Chem WRF-Chem chemical mechanisms and KPP Aerosols in "
+    "path": "tutorial2013.htm",
+    "summary": "WRF-Chem 2013 Tutorial Presentations WRF-CHEM 2013 Tutorial Presentations Power Point Slides Presented at the July 2013 WRF-Chem Tutorial Overview of WRF-Chem Introduction to Photolysis Biogenic and Fire emissions with W"
   },
   {
     "title": "WRF-Chem 2014 Tutorial Presentations",
-    "url": "../tutorial2014.htm",
-    "summary": "WRF-CHEM 2014 Tutorial Presentations Power Point Slides Presented at the July 2014 WRF-Chem Tutorial Overview of WRF-Chem Introduction to Photolysis Biogenic and Fire emissions with WRF-Chem WRF-Chem chemical mechanisms and KPP Aerosols in "
+    "path": "tutorial2014.htm",
+    "summary": "WRF-Chem 2014 Tutorial Presentations WRF-CHEM 2014 Tutorial Presentations Power Point Slides Presented at the July 2014 WRF-Chem Tutorial Overview of WRF-Chem Introduction to Photolysis Biogenic and Fire emissions with W"
   },
   {
     "title": "WRF-Chem 2015 Tutorial Presentations",
-    "url": "../tutorial2015.htm",
-    "summary": "WRF-CHEM 2015 Tutorial Presentations Power Point Slides Presented at the July 2015 WRF-Chem Tutorial Overview of WRF-Chem Introduction to Photolysis Biogenic, Lightning NOx and Fire emissions with WRF-Chem WRF-Chem chemical mechanisms and K"
+    "path": "tutorial2015.htm",
+    "summary": "WRF-Chem 2015 Tutorial Presentations WRF-CHEM 2015 Tutorial Presentations Power Point Slides Presented at the July 2015 WRF-Chem Tutorial Overview of WRF-Chem Introduction to Photolysis Biogenic, Lightning NOx and Fire e"
   },
   {
     "title": "WRF-Chem 2017 Tutorial Presentations",
-    "url": "../tutorial2017.htm",
-    "summary": "WRF-CHEM 2017 Tutorial Presentations Lectures Presented at the 2017 Winter WRF-Chem Tutorial Overview of WRF-Chem A Quick Review Of How To Set-Up &amp; Run WRF-Chem 3.8.1 Best Practices for Applying WRF-Chem 3.8.1 Introduction to Photolysis"
+    "path": "tutorial2017.htm",
+    "summary": "WRF-Chem 2017 Tutorial Presentations WRF-CHEM 2017 Tutorial Presentations Lectures Presented at the 2017 Winter WRF-Chem Tutorial Overview of WRF-Chem A Quick Review Of How To Set-Up &amp; Run WRF-Chem 3.8.1 Best Practic"
   },
   {
     "title": "WRF-Chem 2018 Tutorial Presentations",
-    "url": "../tutorial2018.htm",
-    "summary": "WRF-CHEM 2018 Tutorial Presentations Lectures Presented at the 2018 Winter WRF-Chem Tutorial Overview of WRF-Chem A Quick Review Of How To Set-Up &amp; Run WRF-Chem 3.9.1.1 Best Practices for Applying WRF-Chem 3.9.1.1 Introduction to Photol"
+    "path": "tutorial2018.htm",
+    "summary": "WRF-Chem 2018 Tutorial Presentations WRF-CHEM 2018 Tutorial Presentations Lectures Presented at the 2018 Winter WRF-Chem Tutorial Overview of WRF-Chem A Quick Review Of How To Set-Up &amp; Run WRF-Chem 3.9.1.1 Best Pract"
   },
   {
     "title": "WRF-Chem 2014 Nepal Tutorial Presentations",
-    "url": "../tutorial_nepal_2014.html",
-    "summary": "WRF-CHEM 2014 Nepal Tutorial Presentations Power Point Slides Presented at the June 2014 Nepal WRF-Chem Tutorial Overview of WRF-Chem Set-up and Running WRF-Chem Emissions with WRF-Chem Boundary Conditions with WRF-Chem WRF-Chem chemical me"
+    "path": "tutorial_nepal_2014.html",
+    "summary": "WRF-Chem 2014 Nepal Tutorial Presentations WRF-CHEM 2014 Nepal Tutorial Presentations Power Point Slides Presented at the June 2014 Nepal WRF-Chem Tutorial Overview of WRF-Chem Set-up and Running WRF-Chem Emissions with "
   },
   {
     "title": "exe001 files | WRF-Chem Tutorial Exercises",
-    "url": "../tutorialexercises/exe001/index.html",
-    "summary": "Back to Tutorial Exercises exe001 files Click any file to download it. namelist.input (7,532 bytes) namelist.wps (1,435 bytes)"
+    "path": "tutorialexercises/exe001/index.html",
+    "summary": "exe001 files"
   },
   {
     "title": "exe002 files | WRF-Chem Tutorial Exercises",
-    "url": "../tutorialexercises/exe002/index.html",
-    "summary": "Back to Tutorial Exercises exe002 files Click any file to download it. prep_chem_sources.inp (6,645 bytes)"
+    "path": "tutorialexercises/exe002/index.html",
+    "summary": "exe002 files"
   },
   {
     "title": "Exercise 3 files | WRF-Chem Tutorial Exercises",
-    "url": "../tutorialexercises/exe003/index.html",
-    "summary": "Back to Exercise 3 instructions Exercise 3 files Click any file to download it. al2radm2.outp (308,136 bytes) area_read.f (14,167 bytes) emiss_v04_CONUS60km.F (54,367 bytes) emissions_wps_v4.mod (12,505 bytes) instructions.txt (717 bytes) n"
+    "path": "tutorialexercises/exe003/index.html",
+    "summary": "Exercise 3 files"
   },
   {
     "title": "exe004 files | WRF-Chem Tutorial Exercises",
-    "url": "../tutorialexercises/exe004/index.html",
-    "summary": "Back to Tutorial Exercises exe004 files Click any file to download it. namelist.input (8,135 bytes) prep_chem_sources.inp (6,910 bytes)"
+    "path": "tutorialexercises/exe004/index.html",
+    "summary": "exe004 files"
   },
   {
-    "title": "",
-    "url": "../tutorialexercises/tutorialexercises001.html",
-    "summary": "EXERCISE 1 Exercise Dust: Building the WRF domain to include dust erosion map and simulation of dust transport using WRF-Chem. !You need to install WPS3.9 and WRF-Chem 3.9 on your machine. You can call them ${WPS} and ${WRF-Chem}. !For the "
+    "title": "Exercise 1 | WRF-Chem",
+    "path": "tutorialexercises/tutorialexercises001.html",
+    "summary": "Exercise 1"
   },
   {
-    "title": "",
-    "url": "../tutorialexercises/tutorialexercises002.html",
-    "summary": "EXERCISE 2 Exercise Volcanic Ash: Using the the prep_chem tool to conduct volcanic ash simulation *************************************************************************** Purpose: To familiarize the user with the available global volcani"
+    "title": "Exercise 2 | WRF-Chem",
+    "path": "tutorialexercises/tutorialexercises002.html",
+    "summary": "Exercise 2"
   },
   {
-    "title": "tutorialexercises/tutorialexercises003.html",
-    "url": "../tutorialexercises/tutorialexercises003.html",
-    "summary": "EXERCISE 3 Exercise: US Emission # In this exercise you can generate anthropogenic emissions for WRF-Chem domain over CONUS in 60km resolution. ************************************************************************************************"
+    "title": "Exercise 3 | WRF-Chem",
+    "path": "tutorialexercises/tutorialexercises003.html",
+    "summary": "Exercise 3"
   },
   {
-    "title": "tutorialexercises/tutorialexercises004.html",
-    "url": "../tutorialexercises/tutorialexercises004.html",
-    "summary": "EXERCISE 4 Exercise: Using the Global emissions data (anthropogenic, sea salt, biomass burning) emissions for your domain (RACM-KPP-GOCART option). *************************************************************************** Purpose: To fami"
+    "title": "Exercise 4 | WRF-Chem",
+    "path": "tutorialexercises/tutorialexercises004.html",
+    "summary": "Exercise 4"
   },
   {
     "title": "Tutorial exercises | WRF-Chem",
-    "url": "../tutorialexercises.htm",
-    "summary": "WRF-Chem Portal Downloads Classic Quick links Exercise 1 files (exe001) Exercise 2 files (exe002) Exercise 3 files (exe003) Exercise 4 files (exe004) Downloads page (large archives) Tutorial Exercises for WRF-CHEM Version 4.0"
+    "path": "tutorialexercises.htm",
+    "summary": "WRF-Chem tutorial exercises"
   },
   {
     "title": "WRF/CHEM: Universities",
-    "url": "../universities.html",
-    "summary": "WRF-Chem: Contributors from Universities Northeastern University (The Clean Air, Smart City, And Digital Earth (CASCADE) Research Lab) University of Manchester University of Science and Technology of China (Atmospheric Environment Modeling "
+    "path": "universities.html",
+    "summary": "WRF-Chem: Contributors from Universities Northeastern University (The Clean Air, Smart City, And Digital Earth (CASCADE) Research Lab) University of Manchester University of Science and Technology of China (Atmospheric E"
   },
   {
     "title": "User support | WRF-Chem",
-    "url": "../user-support.htm",
-    "summary": "WRF-Chem Portal Downloads Classic WRF-Chem User Support WRF-Chem latest code release page &lt;---Follow the GitHub instruction to download WRF-Chem here WRF-Chem FAQs WRF-Chem forum (new) Known issues with the current WRF-Chem model. WRF-Ch"
+    "path": "user-support.htm",
+    "summary": "WRF-Chem User Support WRF-Chem latest code release page &lt;---Follow the GitHub instruction to download WRF-Chem here WRF-Chem FAQs WRF-Chem forum (new) Known issues with the current WRF-Chem model. WRF-Chem version 4.4"
   },
   {
     "title": "wiki page",
-    "url": "../wiki.htm",
-    "summary": "WRF-Chem Wiki Page Coming Soon Questions should be directed to WRF-Chem Support . Back to Main WRF-Chem Model Webpage"
+    "path": "wiki.htm",
+    "summary": "WRF-Chem Wiki Page Coming Soon"
   },
   {
     "title": "",
-    "url": "../wrf_tutorial_exercises_v35/compiling_code.html",
-    "summary": "COMPILING WRF-Chem Compiling WRF-Chem: Building the WRF-chem code to allow a user to include dust, chemical species and aerosols when running a WRF simulation. *************************************************************************** Purp"
+    "path": "wrf_tutorial_exercises_v35/compiling_code.html",
+    "summary": "COMPILING WRF-Chem Compiling WRF-Chem: Building the WRF-chem code to allow a user to include dust, chemical species and aerosols when running a WRF simulation. ************************************************************"
   }
 ]
