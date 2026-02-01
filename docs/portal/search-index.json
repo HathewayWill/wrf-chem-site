@@ -1,207 +1,254 @@
 [
   {
     "title": "Disclaimer",
-    "path": "Disclaimer.html",
-    "summary": "Disclaimer The information on government servers is in the public domain, unless specifically annotated otherwise, and may be used freely by the public. Before using information obtained from this server special attention should be given to the date and time of the data and products being displayed. This information shall not be modified in content and then presented as official government material. NOAA/ESRL Global Systems Division is not obligated to provide any support, consulting, training, or assistance of any kind with regard to the use of this material. This material is provided \"AS IS\" and any express or implied warranties including, but not limited to, the warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall NOAA/ESRL Global Systems Division be liable to you or to any third party for any direct, indirect, incidental, consequential, special or exemplary damages or lost profit resulting from any use or misuse of this data. This server is available 24 hours a day, seven days a week, however this server is not operational and is not maintained 24 hours a day, seven days a week. Timely delivery of data and products from this server through the Internet is not guaranteed. Any references or links from the Global Systems Division's web server to any non-Federal Government Web sites do not imply endorsement of any particular product, service, organization, company, information provider, or content. We are not responsible for the contents of any \"off-site\" web pages referenced from the Global Systems Division servers. <!-- WRF-Chem Tutorial Web page Main WRF Model Tutorial Webpage -->"
+    "path": "../Disclaimer.html",
+    "summary": "Disclaimer The information on government servers is in the public domain, unless specifically annotated otherwise, and may be used freely by the public. Before using information obtained from this server special attention should be given to the date and time of the data and products being displayed. This information shall not be modified in content and then presented as official government material. NOAA/ESRL Global Systems Division is not obligated to provide any support, consulting, training, or assistance of any kind with regard to the use of this material. This material is provided \"AS IS\" and any express or implied warranties including, but not limited to, the warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall NOAA/ESRL Global Systems Division be liable to you or to any third party for any direct, indirect, incidental, consequential, special or exemplary damages or lost profit resulting from any use or misuse of this data. This server is available 24 hours a day, seven days a week, however this server is not operational and is not maintained 24 hours a day, seven days a week. Timely delivery of data and products from this server through the Internet is not guaranteed. Any references or links from the Global Systems Division's web server to any non-Federal Government Web sites do not imply endorsement of any particular product, service, organization, company, information provider, or content. We are not responsible for the contents of any \"off-site\" web pages referenced from the Global Systems Division servers.",
+    "text": "Disclaimer Disclaimer The information on government servers is in the public domain, unless specifically annotated otherwise, and may be used freely by the public. Before using information obtained from this server special attention should be given to the date and time of the data and products being displayed. This information shall not be modified in content and then presented as official government material. NOAA/ESRL Global Systems Division is not obligated to provide any support, consulting, training, or assistance of any kind with regard to the use of this material. This material is provided \"AS IS\" and any express or implied warranties including, but not limited to, the warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall NOAA/ESRL Global Systems Division be liable to you or to any third party for any direct, indirect, incidental, consequential, special or exemplary damages or lost profit resulting from any use or misuse of this data. This server is available 24 hours a day, seven days a week, however this server is not operational and is not maintained 24 hours a day, seven days a week. Timely delivery of data and products from"
   },
   {
     "title": "WRF-CHEM: ERDC",
-    "path": "ERDC.html",
-    "summary": "WRF-Chem: Contributors from U.S. Army Engineer Research and Development Center (ERDC) Steven Peckham Sandra Jones"
+    "path": "../ERDC.html",
+    "summary": "WRF-Chem: Contributors from U.S. Army Engineer Research and Development Center (ERDC) Steven Peckham Sandra Jones",
+    "text": "WRF-CHEM: ERDC WRF-Chem: Contributors from U.S. Army Engineer Research and Development Center (ERDC) Steven Peckham Sandra Jones Questions should be directed to WRF-Chem Support . Back to Main WRF-Chem Model Webpage"
   },
   {
     "title": "WRF-Chem: Frequently Asked Questions",
-    "path": "FAQ.htm",
-    "summary": ""
+    "path": "../FAQ.htm",
+    "summary": "",
+    "text": "WRF-Chem: Frequently Asked Questions WRF-Chem: Frequently Asked Questions Q: How do I obtain a copy of the WRF chemistry code? A: You can download the WRF-Chem source code from the WRF site: http://www.wrf-model.org/users/users.php . The chemistry section of the WRF-Chem model is available from the WRF model code download page. Q: Where can I download the WRF Preprocessing System (WPS) Geographical Input Data? How about the dust field variables (EROD, SANDFRAC and CLAYFRAC)? A: You can download the data from the WRF site: http://www2.mmm.ucar.edu/wrf/users/download/get_sources_wps_geog.html . All dust field variables are included in the \"Complete Dataset\". Q: Which dust options are recommended to use in WRF-Chem? A: We recommend using one of the dust_opt = 1, 3, or 4. Note, the dust_opt = 2 has been disabled. Q: What are the chemistry namelist.input options? A: The namelist.input options are discussed in chapter 4 of the User's Guide. In addition, the tutorial exercises demonstrate the steps involved in running the code and each exercice provides solutions that include the namelist.input file. Q: What data do I need to run a simulation with chemistry included? A: One only needs to "
   },
   {
     "title": "Fix/compile.html",
-    "path": "Fix/compile.html",
-    "summary": ""
+    "path": "../Fix/compile.html",
+    "summary": "",
+    "text": "#!/bin/csh -f setenv START_OF_COMPILE \"`date`\" cont1: if ( ! -e configure.wrf ) then echo \"\" echo \"You must run the 'configure' script before running the 'compile' script!\" echo \"Exiting...\" echo \"\" exit 1 endif #---------------------------------- if ( ! $?WRF_KPP ) setenv WRF_KPP 0 if ( $WRF_KPP == 1 ) then chem/KPP/compile_wkc endif #--------------------------------- set ZAP = .foofoo set arglist=\"\" set prev_was_j = false foreach a ( $argv ) if ( \"$a\" == \"-h\" ) then goto hlp else if ( \"$a\" == \"all_wrfvar\" || \"$a\" == \"gen_be\" ) then set arglist = ( $arglist $a ) grep \"DA_CORE=1\" configure.wrf &gt; /dev/null if ( ! $status ) then # If configuration file has DA_CORE=1, set WRF_DA_CORE to 1 setenv WRF_DA_CORE 1 else # If the user ran the configure script without the \"wrfda\" option, \"./compile all_wrfvar\" # will fail in non-obvious ways, and some executables will be created incorrectly. # Let's just quit right away to avoid the hassle. echo \"\" echo \"To build WRFDA, you must run the 'configure' script with the 'wrfda' option:\" echo \" ./configure wrfda\" echo \"\" echo \"Exiting...\" echo \"\" exit 1 endif else if ( ( \"$a\" == \"nmm_real\" ) || ( \"$a\" == \"nmm_nest\" ) || ( \"$a\" == \"nmm_hwrf\" ) ) t"
   },
   {
     "title": "WRF/CHEM: NOAA",
-    "path": "NOAA.html",
-    "summary": "WRF-Chem: Contributors from NOAA Stuart McKeen NOAA/ESRL/CSD and CU Boulder CIRES"
+    "path": "../NOAA.html",
+    "summary": "WRF-Chem: Contributors from NOAA Stuart McKeen NOAA/ESRL/CSD and CU Boulder CIRES",
+    "text": "WRF/CHEM: NOAA WRF-Chem: Contributors from NOAA Stuart McKeen NOAA/ESRL/CSD and CU Boulder CIRES Questions should be directed to WRF-Chem Support . Back to Main WRF-Chem Model Webpage"
   },
   {
     "title": "Operational and Experimental Air Quality Forecasts Using WRF-Chem",
-    "path": "Real_time_forecasts.htm",
-    "summary": ""
+    "path": "../Real_time_forecasts.htm",
+    "summary": "",
+    "text": "Operational and Experimental Air Quality Forecasts Using WRF-Chem Operational and Experimental Air Quality Forecasts Using WRF-Chem The WRF-Chem model is used around the globe for operational air quality forecasts. Some of the locations include: Operational Center Forecasts NOAA/GSL smoke Forecast for North and Central Americas (RAP-Smoke) , USA NOAA/GSL smoke Forecast for CONUS (HRRR-Smoke) , USA Air Quality Forecast over SW Poland , Wroclaw University, Poland PArtnership with ChiNa on space DAta(PANDA) , China Operational Air Quality Forecast System for Macedonia , Faculty of Computer Science and Engineering (FINKI), North Macedonia. Experimental Forecasts NOAA/GSL experimental air quality forecast for North and Central Americas (RAP-chem) , USA Air Quality Forecasts, Dept. of Math and Physics, University of Ljubljana, Slovenia , Departamento de Ci\u00eancias Atmosf\u00e9ricas, Instituto de Astronomia, Geof\u00edsica e Ci\u00eancias Atmosf\u00e9ricas, Universidade de S\u00e3o Paulo , S\u00e3o Paulo, Brazil Regional Air Quality Forecast. Research Institute for Global Change (Formerly JAMSTEC), Yokohama, Japan The System of Air Quality Forecasting and Research. Indian institute of Tropical Meteorology, Pune, India R"
   },
   {
     "title": "References/WRF-Chem.references.htm",
-    "path": "References/WRF-Chem.references.htm",
-    "summary": ""
+    "path": "../References/WRF-Chem.references.htm",
+    "summary": "",
+    "text": "PRIMARY REFERENCES Grell GA, SE Peckham, R Schmitz, and SA McKeen, G Frost, WC Skamarock, and B Eder. 2005. Fully coupled 'online' chemistry in the WRF model. Atmos. Environ., 39:6957-6976. Fast JD, WI Gustafson Jr., RC Easter, RA Zaveri, JC Barnard, EG Chapman, and GA Grell. 2006. Evolution of ozone, particulates, and aerosol direct forcing in an urban area using a new fully-coupled meteorology, chemistry, and aerosol model. J. Geophys. Res., 111:D21305, doi:10.1029/2005JD006721. Peckham, S., G. A. Grell, S. A. McKeen, M. Barth, G. Pfister, C. Wiedinmyer, J. D. Fast, W. I. Gustafson, R. Zaveri, R. C. Easter, J. Barnard, E. Chapman, M. Hewson, R. Schmitz, M. Salzmann, S. Freitas, 2011: WRF-Chem Version 3.3 User's Guide. NOAA Technical Memo., 98 pp. Powers, J. G., J. B. Klemp, W. C. Skamarock, C. A. Davis, J. Dudhia, D. O. Gill, J. L. Coen, D. J. Gochis, R. Ahmadov, S. E. Peckham, G. A. Grell, J. Michalakes, S. Trahan, S. G. Benjamin and C. R. Alexander, G. J. Dimego, et al.,2016: The Weather Research and Forecasting Model: Overview, System Efforts, and Future Directions, AMS. https://doi.org/10.1175/BAMS-D-15-00308.1 PRIMARY REFERENCES FOR KEY MODULES AS IMPLEMENTED INTO WRF-Chem d"
   },
   {
     "title": "WRF-Chem: Tutorials",
-    "path": "Tutorial.html",
-    "summary": ""
+    "path": "../Tutorial.html",
+    "summary": "",
+    "text": "WRF-Chem: Tutorials Online Tutorial Exercises Tutorial Exercises For Learning to Run WRF-Chem versions 4.0 Presentations From the Previous WRF-Chem Tutorials WRF-Chem 2018 Tutorial Presentations WRF-Chem 2017 Tutorial Presentations WRF-Chem 2015 Tutorial Presentations WRF-Chem 2014 Tutorial Presentations WRF-Chem 2014 Nepal Tutorial Presentations WRF-Chem 2013 Tutorial Presentations WRF-Chem 2012 Tutorial Presentations WRF-Chem 2011 Tutorial Presentations Questions regarding these presentations should be directed to WRF-Chem help . Future Tutorials No WRF-Chem Tutorial will be held in 2019 This page developed by Dr. Steven Peckham, and maintained by Ka Yee Wong Questions regarding these exercises should be directed to WRF-Chem help . Back to Main WRF-Chem Model Webpage Since 14 June 2015"
   },
   {
     "title": "WRF-Chem",
-    "path": "Welcome.html",
-    "summary": "Weather Research and Forecasting model coupled to Chemistry (WRF-Chem) <!-- imageLoop.push(\"https://rapidrefresh.noaa.gov/HRRRsmoke/for_web/hrrr_smoke/\" + todaydate + \"00/full/trc1_sfc_f\" + i + \".png\"); imageLoop.push(\"https://rapidrefresh.noaa.gov/HRRRsmoke/for_web/hrrr_smoke/2016121312/full/trc1_sfc_f\" + i + \".png\"); (site under construction) -->"
+    "path": "../Welcome.html",
+    "summary": "",
+    "text": "WRF-Chem Weather Research and Forecasting model coupled to Chemistry (WRF-Chem) Questions should be directed to WRF-Chem Support ."
   },
   {
     "title": "WRF-Chem: Announcements",
-    "path": "announce.htm",
-    "summary": "WRF-Chem: Announcements <!-- ***Postdoctoral position at Northeastern University*** Click here for more information ***Postdoctoral position at CU Boulder CIRES and NOAA/ESRL*** Click here for more information --> Tutorials <!-- Write your comments here Next WRF-Chem tutorial will be held on January 29-30, 2018 at NCAR (Boulder, Colorado, USA). Click here for more information Registration is not yet open. An announcement will be posted. --> To be announced <!-- No WRF-Chem Tutorial will be held in 2019 --> Conferences Joint WRF and MPAS Users' Workshop at NCAR's Center Green Campus, Boulder, Colorado, on June 10-14, 2019. Click here for more information --> To be announced <!-- Write your comments here Joint WRF and MPAS Users' Workshop at NCAR's Center Green Campus, Boulder, Colorado, on June 11-15, 2018. Click here for more information Istanbul Technical University (ITU) is organizing the WRF-Chem EU 2018 workshop will be held on May 3-4, 2018 in Istanbul, Turkey. Click here for more information --> Latest WRF-Chem Releases (GitHub) WRF-Chem Version 4.4.1 (Bug-fix Release) WRF-Chem Version 4.4 Previous WRF-Chem Releases WRF-Chem Version 4.0 or earlier versions <!-- To be announced -->"
+    "path": "../announce.htm",
+    "summary": "WRF-Chem: Announcements Tutorials To be announced Conferences To be announced Latest WRF-Chem Releases (GitHub) WRF-Chem Version 4.4.1 (Bug-fix Release) WRF-Chem Version 4.4 Previous WRF-Chem Releases WRF-Chem Version 4.0 or earlier versions",
+    "text": "WRF-Chem: Announcements WRF-Chem: Announcements Tutorials To be announced Conferences To be announced Latest WRF-Chem Releases (GitHub) WRF-Chem Version 4.4.1 (Bug-fix Release) WRF-Chem Version 4.4 Previous WRF-Chem Releases WRF-Chem Version 4.0 or earlier versions Questions should be directed to WRF-Chem Support . Back to Main WRF-Chem Model Webpage"
   },
   {
     "title": "ANTHROPOGENIC EMISSIONS",
-    "path": "anthropogenic.htm",
-    "summary": ""
-  },
-  {
-    "title": "Code Policy",
-    "path": "code_policy.html",
-    "summary": "Policy on adding new code to WRF-Chem Click here for the workflow for WRF Code Modification If you plan to add new code, please contact to our team here so we can assist you and coordinate the pull request. <!-- More Information WRF-Chem Tutorial Web page Main WRF Model Tutorial Webpage -->"
-  },
-  {
-    "title": "Downloads | WRF-Chem",
-    "path": "downloads.html",
-    "summary": "Downloads"
-  },
-  {
-    "title": "forum",
-    "path": "email_list.htm",
-    "summary": "WRF-Chem email list A new email group for the WRF-Chem user community: https://list.woc.noaa.gov/cgi-bin/mailman/listinfo/wrf-chem-discussions The objectives of this email list (WRF-Chem discussions) are to reach out to the large worldwide WRF-Chem users community for important announcements and updates, to facilitate exchange of ideas and ongoing model developments among the users, and to foster collaboration among different research groups. Interested users can subscribe to the email group via the provided link. When you fill in the form, please don\u2019t forget to indicate your affiliation, so we can get better idea about the users community. All members of the email list will be able to send emails to the entire WRF-Chem discussions group. However, all the email need to be approved by moderators before sending out to the entire group in order to eliminate spam. For any email list questions, please feel free to contact us via wrfchemhelp.gsd@noaa.gov <!-- WRF-Chem Tutorial Web page Main WRF Model Tutorial Webpage -->"
-  },
-  {
-    "title": "External WRF-Chem Development and Support Team",
-    "path": "external-support.htm",
-    "summary": "External WRF-Chem Development and Support Team NOAA/CSD NCAR PNNL <!-- --> NASA ERDC Universities"
-  },
-  {
-    "title": "forum",
-    "path": "forum.htm",
-    "summary": "WRF-Chem Forum A New Forum for the WRF-Chem User Community: https://forum.mmm.ucar.edu/ <!-- https://forum.mmm.ucar.edu/ The objectives of this forum (WRF-Chem discussions) are to reach out to the large worldwide WRF-Chem users community for important announcements and updates, to facilitate exchange of ideas and ongoing model developments among the users, and to foster collaboration among different research groups. !--> Interested users can submit their questions to the forum via the provided link. No account is needed to browse the forum, but in order to post a new topic or a reply, it will be necessary to create an account - which should only take a minute, and involves simply choosing a username and password. The forum is divided into primary topics and subtopics. Please take care to read the introduction and to post to the correct subtopic. At the bottom of the main forum page, you will also find places to post job/position announcements, conference announcements, and to provide forum feedback. Scoll down the forum page and look for the WRF-Chem Support for different topics: Emissions, Gas Chemistry and KPP, Aerosols, and Chemistry-meteorology Interactions. <!-- For questions, please feel free to contact us via wrfchemhelp.gsd@noaa.gov WRF-Chem Tutorial Web page Main WRF Model Tutorial Webpage -->"
+    "path": "../anthropogenic.htm",
+    "summary": "",
+    "text": "ANTHROPOGENIC EMISSIONS ANTHROPOGENIC EMISSIONS Development of anthropogenic emissions for use with WRF/Chem At this time there is no single tool that will construct an anthropogenic emissions data set for any domain that the user selects. This places the requirement upon the user to construct the anthropogenic emissions data set for their particular domain and desired chemistry. Therefore, one must know a priori the preferred domain location and chemistry options that will be used in the simulation. The provided \"raw\" anthropogenic emissions data set (see below) can be used if the domain is located over the 48 contiguous states of the United States, but there are some limitations. If your simulation domain falls outside the regioned covered by the provided emissions data, then one can use the subsequent conversion routine after building your own 3-D data set. The next section shows the suggested methodology for constructing your own anthropogenic emissions data set. Anthropogenic emissions methodology for WRF/Chem The methodology for constructing your own anthropogenic emissions data set is: Start with raw emissions data (data could come from a variety of data sources) A 4-km emis"
   },
   {
     "title": "WRF-Chem",
-    "path": "index.html",
-    "summary": "Weather Research and Forecasting model coupled to Chemistry (WRF-Chem) <!-- imageLoop.push(\"https://rapidrefresh.noaa.gov/HRRRsmoke/for_web/hrrr_smoke/\" + todaydate + \"00/full/trc1_sfc_f\" + i + \".png\"); imageLoop.push(\"https://rapidrefresh.noaa.gov/HRRRsmoke/for_web/hrrr_smoke/2016121312/full/trc1_sfc_f\" + i + \".png\"); (site under construction) -->"
+    "path": "../classic.html",
+    "summary": "",
+    "text": "WRF-Chem New: Open the modern documentation portal: /portal/ . Large files are on the Downloads page. Downloads: Large files and tutorial bundles Weather Research and Forecasting model coupled to Chemistry (WRF-Chem) Questions should be directed to WRF-Chem Support ."
+  },
+  {
+    "title": "Code Policy",
+    "path": "../code_policy.html",
+    "summary": "Policy on adding new code to WRF-Chem Click here for the workflow for WRF Code Modification If you plan to add new code, please contact to our team here so we can assist you and coordinate the pull request.",
+    "text": "Code Policy Policy on adding new code to WRF-Chem Click here for the workflow for WRF Code Modification If you plan to add new code, please contact to our team here so we can assist you and coordinate the pull request. Questions should be directed to WRF-Chem Support . Back to Main WRF-Chem Model Webpage"
+  },
+  {
+    "title": "Downloads | WRF-Chem",
+    "path": "../downloads.html",
+    "summary": "Downloads",
+    "text": "Downloads | WRF-Chem WRF-Chem Downloads Portal Classic home Exercises Downloads Large files are hosted outside GitHub Pages via GitHub Releases. Local exercise files are browsable below. Tutorial 2018 Data (2015) Exercise files Exercise 3 note WRF-Chem Tutorial 2018 Download as a single ZIP (Release asset). WRF-Chem Tutorial Data (2015) Split archives, plus checksums and rebuild commands. Browse exercise folders Clickable file listings for exe001\u2013exe004. WRF-Chem Tutorial Data (2015) These archives are split into parts. Download all parts, then reconstruct with cat , and verify with SHA-256. prep_chem_sources_v1.5_24aug2015.tar.gz prep_chem_sources_v1.5_24aug2015.tar.gz ALL_FILE.tar.gz (split) ALL_FILE.tar.gz.part-aa ALL_FILE.tar.gz.part-ab ALL_FILE.tar.gz.parts.sha256 cat ALL_FILE.tar.gz.part-* > ALL_FILE.tar.gz sha256sum -c ALL_FILE.tar.gz.parts.sha256 global_emissions_v3_24aug2015.tar.gz (split) global_emissions_v3_24aug2015.tar.gz.part-aa global_emissions_v3_24aug2015.tar.gz.part-ab global_emissions_v3_24aug2015.tar.gz.parts.sha256 cat global_emissions_v3_24aug2015.tar.gz.part-* > global_emissions_v3_24aug2015.tar.gz sha256sum -c global_emissions_v3_24aug2015.tar.gz.parts.sha25"
+  },
+  {
+    "title": "forum",
+    "path": "../email_list.htm",
+    "summary": "WRF-Chem email list A new email group for the WRF-Chem user community: https://list.woc.noaa.gov/cgi-bin/mailman/listinfo/wrf-chem-discussions The objectives of this email list (WRF-Chem discussions) are to reach out to the large worldwide WRF-Chem users community for important announcements and updates, to facilitate exchange of ideas and ongoing model developments among the users, and to foster collaboration among different research groups. Interested users can subscribe to the email group via the provided link. When you fill in the form, please don\u2019t forget to indicate your affiliation, so we can get better idea about the users community. All members of the email list will be able to send emails to the entire WRF-Chem discussions group. However, all the email need to be approved by moderators before sending out to the entire group in order to eliminate spam. For any email list questions, please feel free to contact us via wrfchemhelp.gsd@noaa.gov",
+    "text": "forum WRF-Chem email list A new email group for the WRF-Chem user community: https://list.woc.noaa.gov/cgi-bin/mailman/listinfo/wrf-chem-discussions The objectives of this email list (WRF-Chem discussions) are to reach out to the large worldwide WRF-Chem users community for important announcements and updates, to facilitate exchange of ideas and ongoing model developments among the users, and to foster collaboration among different research groups. Interested users can subscribe to the email group via the provided link. When you fill in the form, please don\u2019t forget to indicate your affiliation, so we can get better idea about the users community. All members of the email list will be able to send emails to the entire WRF-Chem discussions group. However, all the email need to be approved by moderators before sending out to the entire group in order to eliminate spam. For any email list questions, please feel free to contact us via wrfchemhelp.gsd@noaa.gov Questions should be directed to WRF-Chem Support . Back to Main WRF-Chem Model Webpage"
+  },
+  {
+    "title": "External WRF-Chem Development and Support Team",
+    "path": "../external-support.htm",
+    "summary": "External WRF-Chem Development and Support Team NOAA/CSD NCAR PNNL NASA ERDC Universities",
+    "text": "External WRF-Chem Development and Support Team External WRF-Chem Development and Support Team NOAA/CSD NCAR PNNL NASA ERDC Universities Questions should be directed to WRF-Chem Support . Back to Main WRF-Chem Model Webpage"
+  },
+  {
+    "title": "forum",
+    "path": "../forum.htm",
+    "summary": "WRF-Chem Forum A New Forum for the WRF-Chem User Community: https://forum.mmm.ucar.edu/ Interested users can submit their questions to the forum via the provided link. No account is needed to browse the forum, but in order to post a new topic or a reply, it will be necessary to create an account - which should only take a minute, and involves simply choosing a username and password. The forum is divided into primary topics and subtopics. Please take care to read the introduction and to post to the correct subtopic. At the bottom of the main forum page, you will also find places to post job/position announcements, conference announcements, and to provide forum feedback. Scoll down the forum page and look for the WRF-Chem Support for different topics: Emissions, Gas Chemistry and KPP, Aerosols, and Chemistry-meteorology Interactions.",
+    "text": "forum WRF-Chem Forum A New Forum for the WRF-Chem User Community: https://forum.mmm.ucar.edu/ Interested users can submit their questions to the forum via the provided link. No account is needed to browse the forum, but in order to post a new topic or a reply, it will be necessary to create an account - which should only take a minute, and involves simply choosing a username and password. The forum is divided into primary topics and subtopics. Please take care to read the introduction and to post to the correct subtopic. At the bottom of the main forum page, you will also find places to post job/position announcements, conference announcements, and to provide forum feedback. Scoll down the forum page and look for the WRF-Chem Support for different topics: Emissions, Gas Chemistry and KPP, Aerosols, and Chemistry-meteorology Interactions. Questions should be directed to WRF-Chem Support . Back to Main WRF-Chem Model Webpage"
+  },
+  {
+    "title": "WRF-Chem",
+    "path": "../index.html",
+    "summary": "",
+    "text": "WRF-Chem Redirecting to the WRF-Chem Documentation Portal \u2026 If you prefer the archived mirror, visit classic.html ."
   },
   {
     "title": "Known Problems and Fixes For WRF/Chem Version 3.8.1",
-    "path": "known-prob.htm",
-    "summary": ""
+    "path": "../known-prob.htm",
+    "summary": "",
+    "text": "Known Problems and Fixes For WRF/Chem Version 3.8.1 WRF-CHEM Version 4.0: Known Problems (and Their Fixes) Problem : Unable to compile convert_emiss.exe by running \u00e2\u0080\u009c./compile emi_conv\u00e2\u0080\u009d. Solution : Please replace the compile file which is located at the top directory. Download this file ==&gt; compile This page developed by Steven Peckham, and maintained by Ka Yee Wong Model questions can be posted here WRF-Chem Support . Back to Main WRF-Chem Model Webpage Since 24 June 2014"
   },
   {
     "title": "User Docs",
-    "path": "model_info.htm",
-    "summary": "User Docs WRF-Chem version 4.4 Users Guide Updated Apr 2022 WRF-Chem version 3.9.1.1 Emissions Guide Updated Feb 2018 The WRF Model main webpage and the Users Resources page WRF-Chem References and related Publications WRF workshop presentations (includes WRF-Chem presentations as well) <!-- WRF-Chem Public Domain Notice Publications related to WRF-Chem Model Evaluation --> Anthropogenic Emissions Available for WRF-Chem Description of MOZART-Based Options"
+    "path": "../model_info.htm",
+    "summary": "User Docs WRF-Chem version 4.4 Users Guide Updated Apr 2022 WRF-Chem version 3.9.1.1 Emissions Guide Updated Feb 2018 The WRF Model main webpage and the Users Resources page WRF-Chem References and related Publications WRF workshop presentations (includes WRF-Chem presentations as well) Anthropogenic Emissions Available for WRF-Chem Description of MOZART-Based Options",
+    "text": "User Docs User Docs WRF-Chem version 4.4 Users Guide Updated Apr 2022 WRF-Chem version 3.9.1.1 Emissions Guide Updated Feb 2018 The WRF Model main webpage and the Users Resources page WRF-Chem References and related Publications WRF workshop presentations (includes WRF-Chem presentations as well) Anthropogenic Emissions Available for WRF-Chem Description of MOZART-Based Options Questions should be directed to WRF-Chem Support . Back to Main WRF-Chem Model Webpage"
   },
   {
     "title": "Development and Support Team",
-    "path": "support-team.htm",
-    "summary": "WRF-Chem Development and Support Team The WRF-Chem code development and maintenance is conducted by our team at the NOAA/ESRL/GSL in strong collaboration with other research groups at NOAA/ESRL, NCAR, PNNL, NASA and ERDC and many other institutes. Many researchers from various institutions, universities and government organizations from different countries have made significant contributions to the development of the WRF-Chem model since its inception. Majority of these contributions have been provided to the worldwide WRF-Chem community as in-kind support. For any model related questions, there is a new support forum (under the WRF-Chem session) https://forum.mmm.ucar.edu/ provided by the NCAR's WRF team. Using this new forum will allow all the WRF-Chem developers and users help each other with the WRF-Chem model and software related questions. One of the advantages of the forum over the old email based help desk is that the users can browse the old posts in this new forum. This will help to avoid repetitive questions. For the announcements that are of an interest to the large modeling community, you can post them in this discussion list (wrf-chem-discussions@list.woc.noaa.gov). Also, always check the WRF-Chem web-page for the known problems, the publication list, and the tutorial presentations. For new WRF-Chem users, please first complete the online tutorial exercises: online tutorials before you submit any questions. Our experience shows that, the tutorial exercises can help solving the problems some users experience in the emissions processing, selecting the namelist options and running the model. Users may take advantage of the annual tutorials provided by us (during winter) in conjunction with the regular WRF tutorials, which are held at NCAR in Boulder, CO. In addition, international WRF-Chem tutorials are occasionally offered depending on availability of funding and resources. In publications, please cite relevant papers describing the WRF-Chem model and its parameterizations that are used in your research. Please acknowledge the specific developer groups (such as NOAA/ESRL for the help desk, PNNL, and/or NCAR) from which you received help and support with WRF-Chem questions. Team Members Jordan Schnell NOAA/ESRL/GSL and CU Boulder CIRES (Team Leader) Ravan Ahmadov NOAA/ESRL/GSL and CU Boulder CIRES Georg Grell NOAA/ESRL/GSL Ka Yee Wong NOAA/ESRL/GSL and CSU CIRA Li (Kate) Zhang NOAA/ESRL/GSL and CU Boulder CIRES WRF-Chem Support: https://forum.mmm.ucar.edu/"
+    "path": "../support-team.htm",
+    "summary": "",
+    "text": "Development and Support Team WRF-Chem Development and Support Team The WRF-Chem code development and maintenance is conducted by our team at the NOAA/ESRL/GSL in strong collaboration with other research groups at NOAA/ESRL, NCAR, PNNL, NASA and ERDC and many other institutes. Many researchers from various institutions, universities and government organizations from different countries have made significant contributions to the development of the WRF-Chem model since its inception. Majority of these contributions have been provided to the worldwide WRF-Chem community as in-kind support. For any model related questions, there is a new support forum (under the WRF-Chem session) https://forum.mmm.ucar.edu/ provided by the NCAR's WRF team. Using this new forum will allow all the WRF-Chem developers and users help each other with the WRF-Chem model and software related questions. One of the advantages of the forum over the old email based help desk is that the users can browse the old posts in this new forum. This will help to avoid repetitive questions. For the announcements that are of an interest to the large modeling community, you can post them in this discussion list (wrf-chem-disc"
   },
   {
     "title": "WRF/Chem 2010 Tutorial Presentations",
-    "path": "tutorial2011.htm",
-    "summary": ""
+    "path": "../tutorial2011.htm",
+    "summary": "",
+    "text": "WRF/Chem 2010 Tutorial Presentations WRF-CHEM 2011 Tutorial Presentations Power Point Slides Presented at the August 2011 WRF-Chem Tutorial Overview of WRF/Chem Introduction to WRF-Chem Introduction to Photolysis MEGAN description and use with WRF-Chem WRF/Chem chemical mechanisms and KPP Aerosols in WRF/Chem Aerosols-Radiation-Microphysics interactions in WRF-Chem Set-up and Running WRF-Chem Return to WRF-Chem Main Page This page developed by Steven Peckham and Georg Grell Any questions for the tutorial should be directed to WRF-Chem help ."
   },
   {
     "title": "WRF-Chem 2012 Tutorial Presentations",
-    "path": "tutorial2012.htm",
-    "summary": ""
+    "path": "../tutorial2012.htm",
+    "summary": "",
+    "text": "WRF-Chem 2012 Tutorial Presentations WRF-CHEM 2012 Tutorial Presentations Power Point Slides Presented at the July 2012 WRF-Chem Tutorial Overview of WRF-Chem Introduction to Photolysis Biogenic and Fire emissions with WRF-Chem WRF-Chem chemical mechanisms and KPP Aerosols in WRF-Chem Aerosols-Radiation-Microphysics interactions in WRF-Chem Using PRE-CHEM-SOURCES with WRF-Chem Set-up and Running WRF-Chem Best Practices When Experimenting with WRF Running WRF-Chem with MEGAN and FINN WRF/CHEM 2012 Brazil Tutorial Presentations Power Point Slides Presented at the October 2012 WRF-Chem Tutorial in Sao Paulo, Brazil Overview of the WRF model Best Practices When Experimenting with WRF Set-up and Running WRF-Chem Running WRF-Chem with MEGAN and FINN Building Emissions for WRF-Chem with Prep-Chem-Sources Using nests with the WRF model Considerations when using nests with WRF-Chem Return to WRF-Chem Main Page This page developed by Steven Peckham and Georg Grell Any questions for the tutorial should be directed to WRF-Chem help . Since 24 June 2014"
   },
   {
     "title": "WRF-Chem 2013 Tutorial Presentations",
-    "path": "tutorial2013.htm",
-    "summary": ""
+    "path": "../tutorial2013.htm",
+    "summary": "",
+    "text": "WRF-Chem 2013 Tutorial Presentations WRF-CHEM 2013 Tutorial Presentations Power Point Slides Presented at the July 2013 WRF-Chem Tutorial Overview of WRF-Chem Introduction to Photolysis Biogenic and Fire emissions with WRF-Chem WRF-Chem chemical mechanisms and KPP Aerosols in WRF-Chem Aerosols-Radiation-Microphysics interactions in WRF-Chem Using PRE-CHEM-SOURCES with WRF-Chem Set-up and Running WRF-Chem Return to WRF-Chem Main Page This page developed by Steven Peckham and Georg Grell Any questions for the tutorial should be directed to WRF-Chem help . Since 24 June 2014"
   },
   {
     "title": "WRF-Chem 2014 Tutorial Presentations",
-    "path": "tutorial2014.htm",
-    "summary": ""
+    "path": "../tutorial2014.htm",
+    "summary": "",
+    "text": "WRF-Chem 2014 Tutorial Presentations WRF-CHEM 2014 Tutorial Presentations Power Point Slides Presented at the July 2014 WRF-Chem Tutorial Overview of WRF-Chem Introduction to Photolysis Biogenic and Fire emissions with WRF-Chem WRF-Chem chemical mechanisms and KPP Aerosols in WRF-Chem Aerosols-Radiation-Microphysics interactions in WRF-Chem Using PRE-CHEM-SOURCES with WRF-Chem Set-up and Running WRF-Chem Best Practices for Applying WRF-Chem Return to WRF-Chem Main Page This page developed by Steven Peckham and Georg Grell Any questions for the tutorial should be directed to WRF-Chem help ."
   },
   {
     "title": "WRF-Chem 2015 Tutorial Presentations",
-    "path": "tutorial2015.htm",
-    "summary": ""
+    "path": "../tutorial2015.htm",
+    "summary": "",
+    "text": "WRF-Chem 2015 Tutorial Presentations WRF-CHEM 2015 Tutorial Presentations Power Point Slides Presented at the July 2015 WRF-Chem Tutorial Overview of WRF-Chem Introduction to Photolysis Biogenic, Lightning NOx and Fire emissions with WRF-Chem WRF-Chem chemical mechanisms and KPP Aerosols in WRF-Chem Aerosols-Radiation-Microphysics interactions in WRF-Chem Emissions data tools for use with WRF-Chem Set-up and Running WRF-Chem Best Practices for Applying WRF-Chem Return to WRF-Chem Main Page This page developed by Steven Peckham and Georg Grell Any questions for the tutorial should be directed to WRF-Chem help ."
   },
   {
     "title": "WRF-Chem 2017 Tutorial Presentations",
-    "path": "tutorial2017.htm",
-    "summary": ""
+    "path": "../tutorial2017.htm",
+    "summary": "",
+    "text": "WRF-Chem 2017 Tutorial Presentations WRF-CHEM 2017 Tutorial Presentations Lectures Presented at the 2017 Winter WRF-Chem Tutorial Overview of WRF-Chem A Quick Review Of How To Set-Up &amp; Run WRF-Chem 3.8.1 Best Practices for Applying WRF-Chem 3.8.1 Introduction to Photolysis Biogenic, wildfire and lightning emissions in WRF-Chem Dust options in WRF-Chem Anthropogenic emissions and gas chemistry mechanisms in WRF-Chem Aerosols in WRF-Chem Aerosols-Radiation-Microphysics interactions in WRF-Chem Introduction to chemical data assimilation Return to WRF-Chem Main Page This page developed by Ka Yee Wong Any questions for the tutorial should be directed to WRF-Chem help ."
   },
   {
     "title": "WRF-Chem 2018 Tutorial Presentations",
-    "path": "tutorial2018.htm",
-    "summary": ""
+    "path": "../tutorial2018.htm",
+    "summary": "",
+    "text": "WRF-Chem 2018 Tutorial Presentations WRF-CHEM 2018 Tutorial Presentations Lectures Presented at the 2018 Winter WRF-Chem Tutorial Overview of WRF-Chem A Quick Review Of How To Set-Up &amp; Run WRF-Chem 3.9.1.1 Best Practices for Applying WRF-Chem 3.9.1.1 Introduction to Photolysis Biogenic, wildfire and lightning emissions in WRF-Chem Dust and volcano options and emissions in WRF-Chem Anthropogenic emissions and gas chemistry mechanisms in WRF-Chem Aerosols in WRF-Chem Aerosols-Radiation-Microphysics interactions in WRF-Chem Computational costs of WRF and WRF-Chem simulations Introduction to chemical data assimilation Return to WRF-Chem Main Page This page developed by Ka Yee Wong Any questions for the tutorial should be directed to WRF-Chem help ."
   },
   {
     "title": "WRF-Chem 2014 Nepal Tutorial Presentations",
-    "path": "tutorial_nepal_2014.html",
-    "summary": ""
+    "path": "../tutorial_nepal_2014.html",
+    "summary": "",
+    "text": "WRF-Chem 2014 Nepal Tutorial Presentations WRF-CHEM 2014 Nepal Tutorial Presentations Power Point Slides Presented at the June 2014 Nepal WRF-Chem Tutorial Overview of WRF-Chem Set-up and Running WRF-Chem Emissions with WRF-Chem Boundary Conditions with WRF-Chem WRF-Chem chemical mechanisms and KPP Suggested best practices with WRF-Chem Return to WRF-Chem Main Page This page developed by Steven Peckham and Georg Grell Any questions for the tutorial should be directed to WRF-Chem help . Since 24 June 2014"
   },
   {
     "title": "exe001 files | WRF-Chem Tutorial Exercises",
-    "path": "tutorialexercises/exe001/index.html",
-    "summary": "exe001 files"
+    "path": "../tutorialexercises/exe001/index.html",
+    "summary": "exe001 files",
+    "text": "exe001 files | WRF-Chem Tutorial Exercises Back to Tutorial Exercises exe001 files Click any file to download it. namelist.input (7,532 bytes) namelist.wps (1,435 bytes)"
   },
   {
     "title": "exe002 files | WRF-Chem Tutorial Exercises",
-    "path": "tutorialexercises/exe002/index.html",
-    "summary": "exe002 files"
+    "path": "../tutorialexercises/exe002/index.html",
+    "summary": "exe002 files",
+    "text": "exe002 files | WRF-Chem Tutorial Exercises Back to Tutorial Exercises exe002 files Click any file to download it. prep_chem_sources.inp (6,645 bytes)"
   },
   {
     "title": "Exercise 3 files | WRF-Chem Tutorial Exercises",
-    "path": "tutorialexercises/exe003/index.html",
-    "summary": "Exercise 3 files"
+    "path": "../tutorialexercises/exe003/index.html",
+    "summary": "Exercise 3 files",
+    "text": "Exercise 3 files | WRF-Chem Tutorial Exercises Back to Exercise 3 instructions Exercise 3 files Click any file to download it. al2radm2.outp (308,136 bytes) area_read.f (14,167 bytes) emiss_v04_CONUS60km.F (54,367 bytes) emissions_wps_v4.mod (12,505 bytes) instructions.txt (717 bytes) namelist.input (8,408 bytes) point_read.f (9,490 bytes) scratem (2,035,548 bytes) wrfinput_d01_00Z (12,773,160 bytes) wrfinput_d01_12Z (12,773,160 bytes)"
   },
   {
     "title": "exe004 files | WRF-Chem Tutorial Exercises",
-    "path": "tutorialexercises/exe004/index.html",
-    "summary": "exe004 files"
+    "path": "../tutorialexercises/exe004/index.html",
+    "summary": "exe004 files",
+    "text": "exe004 files | WRF-Chem Tutorial Exercises Back to Tutorial Exercises exe004 files Click any file to download it. namelist.input (8,135 bytes) prep_chem_sources.inp (6,910 bytes)"
   },
   {
     "title": "",
-    "path": "tutorialexercises/tutorialexercises001.html",
-    "summary": ""
+    "path": "../tutorialexercises/tutorialexercises001.html",
+    "summary": "",
+    "text": "EXERCISE 1 Exercise Dust: Building the WRF domain to include dust erosion map and simulation of dust transport using WRF-Chem. !You need to install WPS3.9 and WRF-Chem 3.9 on your machine. You can call them ${WPS} and ${WRF-Chem}. !For the dust exercise you need to download the erodibility dataset. ! You can download the data from the WRF site: http://www2.mmm.ucar.edu/wrf/users/download/get_sources_wps_geog.html . All dust field variables are included in the \"Complete Dataset\". !Load necessary libraries: impi, netcdf, ncl, nco, intel !Here is the namelist you need to run this exercise: Namelist . !Here is the data you need to run this exercise: Data . cd ${WPS} !Examine the namelist.wps !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! !BEFORE WE RUN GEOGRID !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! cd geogrid ln -svf GEOGRID.TBL.ARW_CHEM GEOGRID.TBL cd .. ./geogrid.exe !You will see !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ! Successful completion of geogrid. ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Using the WPS, build a single WRF domain with a Lambert Conformal projection using geogrid.exe. The simulation will will use 6 h GFS analysis data starting on 14 July 2010 an"
   },
   {
     "title": "",
-    "path": "tutorialexercises/tutorialexercises002.html",
-    "summary": ""
+    "path": "../tutorialexercises/tutorialexercises002.html",
+    "summary": "",
+    "text": "EXERCISE 2 Exercise Volcanic Ash: Using the the prep_chem tool to conduct volcanic ash simulation *************************************************************************** Purpose: To familiarize the user with the available global volcanic data set. This data set uses a program called \"prep_chem_sources\" to read the grid location and volcano information and map the eruption data to the user specified simulation domain. The use of the prep_chem_sources program is complex and requires the user to be familiar with the simulation domain mapping information, the location of various data sets and where they are obtained as well as located on their particular system. Also, the user needs to be very familiar with the WRF-Chem registry (WRFV3/Registry/registry.chem) as the conversion process for this data that relies on the correct specification of chemistry namelist options. See the WRF-Chem Quick_start guide, the User's guide as well as the WRF-Chem FAQ web page for additional information. This exercise demonstrates the methodology for making a WRF-Chem forecast. All forecasts should follow the process shown here which is: Produce a WRF simulation for your domain of interest with chemis"
   },
   {
     "title": "tutorialexercises/tutorialexercises003.html",
-    "path": "tutorialexercises/tutorialexercises003.html",
-    "summary": ""
+    "path": "../tutorialexercises/tutorialexercises003.html",
+    "summary": "",
+    "text": "EXERCISE 3 Exercise: US Emission # In this exercise you can generate anthropogenic emissions for WRF-Chem domain over CONUS in 60km resolution. ************************************************************************************************* Here is the emission code you need to run this exercise: Run_emiss04 . # Check the Fortran programs emiss_v04_CONUS60km.F # The following lines are from emiss_v04_CONUS60km.F modified for the US60km domain ! Following for WRF-Chem 60 km domain (Polar Stereographic), no nest, continental U.S. (July 2008) INTEGER :: iproj = 1 REAL :: rekm = 6370. REAL :: dx = 60.E3 REAL :: dxbigdo = 60.E3 REAL :: xlatc = 45.00 REAL :: xlonc = -97.00 REAL :: clat1 = 45.00 REAL :: clat2 = 33.00 INTEGER :: inest1 = 0 REAL :: xnesstr = 1.00 REAL :: ynesstr = 1.00 INTEGER :: il = 81 INTEGER :: jl = 51 INTEGER :: starthr = 01 INTEGER :: maxhr = 24 INTEGER :: endhr ************************************************************************************************* Here is the emission data you need to run this exercise: NEI_input . # Extract the em11v1_file1.tar and em11v1_file2.tar and name the directory \"NEI_input\" and update the \"NEI_input\" path in emiss_v04_CONUS60km.F"
   },
   {
     "title": "tutorialexercises/tutorialexercises004.html",
-    "path": "tutorialexercises/tutorialexercises004.html",
-    "summary": ""
+    "path": "../tutorialexercises/tutorialexercises004.html",
+    "summary": "",
+    "text": "EXERCISE 4 Exercise: Using the Global emissions data (anthropogenic, sea salt, biomass burning) emissions for your domain (RACM-KPP-GOCART option). *************************************************************************** Purpose: To familiarize the user with the available global emissions data set. This data set uses a program called \"prep_chem_sources\" to read the emissions data and map it to the user specified simulation domain. The program is capable of mapping anthropogenic and biogenic emissions, sea salt as well as biomass burning (wildfire) and volcanic ash emissions to the user domain. The use of the prep_chem_sources program is complex and requires the user to be familiar with the simulation domain mapping information, the location of various data sets and where they are obtained as well as located on their particular system. Also, the user needs to be very familiar with the WRF-Chem registry (WRFV3/Registry/registry.chem) as the conversion process for this data that relies on the correct specification of chemistry namelist options. See the WRF-Chem Quick_start guide, the User's guide as well as the WRF-Chem FAQ web page (https://hathewaywill.github.io/wrf-chem-site//FA"
   },
   {
     "title": "Tutorial Exercises For WRF-Chem Version 4.0",
-    "path": "tutorialexercises.htm",
-    "summary": ""
+    "path": "../tutorialexercises.htm",
+    "summary": "",
+    "text": "Tutorial Exercises For WRF-Chem Version 4.0 Tutorial Exercises for WRF-CHEM Version 4.0 It is suggested that you keep open a copy of the WRF-Chem User's Guide when doing the following exercises. These tutorial exercises focus on the set-up and running of the WRF-Chem model. Each exercise will provide the user with previously constructed emissions data files so that the student can focus on learning the methodology instead of data gathering and processing. Model questions can be posted here WRF-Chem Support . If you are not currently attending a WRF-Chem tutorial and are unfamiliar with compilling the code then consider following the compiling WRF-Chem directions before starting the tutorial exercises. Exercise 1: Building an initial field that contains dust erosion map and running WRF-Chem. Purpose : To familiarize the user with the WRF WPS and the methodology for preparing the initial fields for a simulation that includes a dust emissions in a WRF-Chem simulation. The domain is located over the Mediterrainian region. Go to exercise 1 Exercise 2: Using the the prep_chem tool to conduct volcanic ash simulation. Purpose : To familiarize the user with the available global volcanic dat"
   },
   {
     "title": "WRF/CHEM: Universities",
-    "path": "universities.html",
-    "summary": "WRF-Chem: Contributors from Universities <!-- North Carolina State University (Air Quality Forecasting Lab) --> Northeastern University (The Clean Air, Smart City, And Digital Earth (CASCADE) Research Lab) University of Manchester University of Science and Technology of China (Atmospheric Environment Modeling Lab) <!-- This page developed and maintained by Ka Yee Wong Model questions should be directed to WRF-Chem help . Last modified: Aug 16, 2016 11:17 AM -->"
+    "path": "../universities.html",
+    "summary": "WRF-Chem: Contributors from Universities Northeastern University (The Clean Air, Smart City, And Digital Earth (CASCADE) Research Lab) University of Manchester University of Science and Technology of China (Atmospheric Environment Modeling Lab)",
+    "text": "WRF/CHEM: Universities WRF-Chem: Contributors from Universities Northeastern University (The Clean Air, Smart City, And Digital Earth (CASCADE) Research Lab) University of Manchester University of Science and Technology of China (Atmospheric Environment Modeling Lab) Questions should be directed to WRF-Chem Support . Back to Main WRF-Chem Model Webpage"
   },
   {
     "title": "WRF-Chem User Support",
-    "path": "user-support.htm",
-    "summary": "WRF-Chem User Support <!-- WRF-Chem code download WRF-Chem code download --> WRF-Chem latest code release page &lt;---Follow the GitHub instruction to download WRF-Chem here WRF-Chem FAQs WRF-Chem forum (new) Known issues with the current WRF-Chem model. WRF-Chem version 4.4 Users Guide Updated Apr 2022 WRF-Chem version 3.9.1.1 Emissions Guide Updated Jan 2018 WRF-Chem Tutorial Web page WRF-Chem discussions email group (new) wiki-page WRF-Chem wiki-page"
+    "path": "../user-support.htm",
+    "summary": "WRF-Chem User Support WRF-Chem latest code release page &lt;---Follow the GitHub instruction to download WRF-Chem here WRF-Chem FAQs WRF-Chem forum (new) Known issues with the current WRF-Chem model. WRF-Chem version 4.4 Users Guide Updated Apr 2022 WRF-Chem version 3.9.1.1 Emissions Guide Updated Jan 2018 WRF-Chem Tutorial Web page WRF-Chem discussions email group (new) wiki-page WRF-Chem wiki-page",
+    "text": "WRF-Chem User Support WRF-Chem User Support WRF-Chem latest code release page &lt;---Follow the GitHub instruction to download WRF-Chem here WRF-Chem FAQs WRF-Chem forum (new) Known issues with the current WRF-Chem model. WRF-Chem version 4.4 Users Guide Updated Apr 2022 WRF-Chem version 3.9.1.1 Emissions Guide Updated Jan 2018 WRF-Chem Tutorial Web page WRF-Chem discussions email group (new) wiki-page WRF-Chem wiki-page Questions should be directed to WRF-Chem Support . Back to Main WRF-Chem Model Webpage"
   },
   {
     "title": "wiki page",
-    "path": "wiki.htm",
-    "summary": "WRF-Chem Wiki Page Coming Soon <!-- WRF-Chem Tutorial Web page Main WRF Model Tutorial Webpage -->"
+    "path": "../wiki.htm",
+    "summary": "WRF-Chem Wiki Page Coming Soon",
+    "text": "wiki page WRF-Chem Wiki Page Coming Soon Questions should be directed to WRF-Chem Support . Back to Main WRF-Chem Model Webpage"
   },
   {
     "title": "",
-    "path": "wrf_tutorial_exercises_v35/compiling_code.html",
-    "summary": ""
+    "path": "../wrf_tutorial_exercises_v35/compiling_code.html",
+    "summary": "",
+    "text": "COMPILING WRF-Chem Compiling WRF-Chem: Building the WRF-chem code to allow a user to include dust, chemical species and aerosols when running a WRF simulation. *************************************************************************** Purpose: To familiarize the user with the methodology by which the WRF-Chem code is compiled. The methodology is similar to which the WRF model and the WRF Preprocessing System (WPS) are compiled. *************************************************************************** Note: If not already familiar with the compiling of the WRF and WRF preprocessor codes, the user might consider not doing this exercise until after attending a WRF tutorial, or take the online training for the WRF model so that the compilation process is familiar. Before attempting to compile the WRF-Chem model, be sure you always set your environmental variables. This setp is also explained in the WRF-Chem User's Guide under Appendix A titled \"Quick Start Guide\". With the c-shell environment the user needs to set the WRF_CHEM environment variable setenv WRF_CHEM 1 If the optional kinetic pre-processor is to be compiled, then several other environmental variables need to be set. The"
   }
 ]
