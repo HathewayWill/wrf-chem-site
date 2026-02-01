@@ -1,41 +1,19 @@
-<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<script src="loop/jquery-1.3.2.jquery.min.js" type="text/javascript"></script>
-<script src="loop/jqueryui-1.7.2.jquery-ui.min.js" type="text/javascript"></script>
-<script src="loop/jquery-ui.flipbook.js" type="text/javascript"></script>
-<link href="loop/jquery-ui.css" rel="stylesheet" type="text/css"/>
-<link href="loop/jquery-ui.flipbook4.css" rel="stylesheet" type="text/css"/>
-<!-- FlipBook -->
-<script type="text/javascript">
-	var imageLoop = new Array();
-	var todaydate = "<!--#config timefmt='%Y%m%d' --><!--#echo var='DATE_LOCAL' -->";
-	
-	var todaytime = "<!--#config timefmt='%I' --><!--#echo var='DATE_LOCAL' -->";
-	if (todaytime > 12){ todaydate = todaydate -1; }
-	for (var i=0; i<=37; i++) {
-		if (i <=9) {i = "0" + i;}
-		imageLoop.push("hrrrsmokeimages/trc1_sfc_f" + i + ".png");
-	}
-
-$(function() {
-    var $flipbook = $('#flipbook');
-$flipbook.flipbook({
-  images: imageLoop
-});
-});
-</script>
-<title>WRF-Chem</title>
-<meta content="none, default" name="Microsoft Border"/></head>
-<meta content="meteorology, mesoscale, microscale, weather modeling, forecasting weather, weather prediction, predictability, cloud systems, boundary layers, surface-atmosphere interactions, convective cloud systems, atmospheric chemistry, precipitating weather systems, wildfire research, wildfire model, WRF chemistry, air quality forecasting, air quality forecast, air quality forecasting model, pollution forecast, pollution model, atmospheric pollution model, atmospheric dispersion, dispersion model, atmospheric climate change, climate change" name="KEYWORDS"/>
-<body bgcolor="#FFFFFF" vlink="#0000FF">
-<br/>
-<h1 align="center"><font face="Helvetica">Weather Research and Forecasting model coupled to Chemistry (WRF-Chem)<br/>
-<br/>
-<!--
-		imageLoop.push("https://rapidrefresh.noaa.gov/HRRRsmoke/for_web/hrrr_smoke/" + todaydate + "00/full/trc1_sfc_f" + i + ".png");
-		imageLoop.push("https://rapidrefresh.noaa.gov/HRRRsmoke/for_web/hrrr_smoke/2016121312/full/trc1_sfc_f" + i + ".png");
-<p align="center"><small><em>Questions should be directed to <a href="https://forum.mmm.ucar.edu/">WRF-Chem Support</a>.</em></small></p>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WRF-Chem</title>
+  <meta http-equiv="refresh" content="0; url=./portal/" />
+  <link rel="canonical" href="./portal/" />
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:40px;line-height:1.4}
+    a{color:#005ea6}
+  </style>
+</head>
+<body>
+  <p>Redirecting to the <a href="./portal/">WRF-Chem Documentation Portal</a>…</p>
+  <p>If you prefer the archived mirror, visit <a href="./classic.html">classic.html</a>.</p>
+  <script>window.location.replace("./portal/");</script>
 </body>
-<br/>
 </html>
